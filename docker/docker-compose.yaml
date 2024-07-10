@@ -15,29 +15,29 @@ services:
     env_file:
     - ../.env
 
-  backend:
-    image: lexart-backend:latest
-    build:
-      context: ../backend
-      dockerfile: ./docker/Dockerfile
-    ports:
-    - "${PORT:-8080}:8080"
-    depends_on:
-    - db
-    env_file:
-    - ../backend/.env
+  # backend:
+  #   image: lexart-backend:latest
+  #   build:
+  #     context: ../backend
+  #     dockerfile: ./docker/Dockerfile
+  #   ports:
+  #   - "${PORT:-8080}:8080"
+  #   depends_on:
+  #   - db
+  #   env_file:
+  #   - ../backend/.env
 
-  frontend:
-    image: lexart-frontend:latest
-    build:
-      context: ../frontend
-      dockerfile: ./docker/Dockerfile
-    ports:
-    - "${PORT:-8080}:8080"
-    depends_on:
-    - db
-    env_file:
-    - ../frontend/.env
+  # frontend:
+  #   image: lexart-frontend:latest
+  #   build:
+  #     context: ../frontend
+  #     dockerfile: ./docker/Dockerfile
+  #   ports:
+  #   - "${PORT:-8080}:8080"
+  #   depends_on:
+  #   - db
+  #   env_file:
+  #   - ../frontend/.env
 
 volumes:
   lexart_postgres_data:
