@@ -1,5 +1,6 @@
 // .env variables
 import dotenv from "dotenv";
+dotenv.config();
 
 // decorators
 import "reflect-metadata";
@@ -14,9 +15,7 @@ const port = process.env["PORT"] || 3000;
 
 app.use(express.json());
 
-const initializeServer = async () => {
-  dotenv.config();
-  
+const initializeServer = async () => {  
   await sequelize.sync();
 
   app.get("/", (req: Request, res: Response) => {
