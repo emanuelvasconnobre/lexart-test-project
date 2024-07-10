@@ -5,6 +5,8 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
@@ -15,6 +17,12 @@
       ],
       "@main/*": [
         "main/*"
+      ],
+      "@data/*": [
+        "data/*"
+      ],
+      "@config/*": [
+        "config/*"
       ]
     }
   },

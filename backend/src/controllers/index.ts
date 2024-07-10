@@ -1,1 +1,1 @@
-export * from "./HealthController";
+export * from "./health.controller";

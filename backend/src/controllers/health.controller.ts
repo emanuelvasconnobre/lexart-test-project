@@ -10,7 +10,7 @@ export class HealthController extends BaseController {
     this.router.get("/health", this.handleRequest.bind(this));
   }
 
-  public handleRequest(req: Request, res: Response) {
+  public async handleRequest(req: Request, res: Response) {
     res.json({
       message: "Ok",
     });
