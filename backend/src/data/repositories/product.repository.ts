@@ -11,13 +11,13 @@ export class ProductRepository {
     return products;
   }
 
-  async getOne(id: number) {
+  async getById(id: number) {
     const product = await Product.findByPk(id);
     return product;
   }
 
   async createOne(
-    productData: Optional<Product, NullishPropertiesOf<Product>>
+    productData: Omit<Product, "id">
   ) {
     const newProduct = await Product.create(productData);
     return newProduct;

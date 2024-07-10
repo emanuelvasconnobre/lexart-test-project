@@ -5,7 +5,7 @@ export class Product extends Model<Product> {
   @Column({
     primaryKey: true,
   })
-  id!: number;
+  id?: number;
 
   @Column({
     type: DataType.STRING,
