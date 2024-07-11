@@ -4,6 +4,7 @@ import { ProductService } from "services";
 import { CreateProductDto, UpdateProductDto } from "validation/product";
 import { NotFoundHttpException } from "exceptions/http-exceptions";
 import { validateDto } from "utils";
+import { ApiResponse } from "./protocols/api-response";
 
 export class ProductController extends BaseController {
   private productService = new ProductService();
@@ -32,7 +33,7 @@ export class ProductController extends BaseController {
 
     try {
       const products = await this.productService.getMany(page, countPerPage);
-      res.status(200).json(products);
+      res.status(200).json(new ApiResponse(products));
     } catch (error: any) {
       next(error);
     }
@@ -47,7 +48,7 @@ export class ProductController extends BaseController {
     const product = await this.productService.getById(productId);
 
     if (product) {
-      res.status(200).json(product);
+      res.status(200).json(new ApiResponse(product));
     } else {
       next(
         new NotFoundHttpException({
@@ -68,7 +69,7 @@ export class ProductController extends BaseController {
       await validateDto(CreateProductDto, productData);
 
       const createdProduct = await this.productService.create(productData);
-      res.status(201).json(createdProduct);
+      res.status(201).json(new ApiResponse(createdProduct));
     } catch (error: any) {
       next(error);
     }
@@ -91,7 +92,7 @@ export class ProductController extends BaseController {
       );
 
       if (updatedProduct) {
-        res.status(200).json(updatedProduct);
+        res.status(200).json(new ApiResponse(updatedProduct));
       } else {
         throw new NotFoundHttpException({
           message: `Product with id ${productId} not found`,
@@ -107,11 +108,10 @@ export class ProductController extends BaseController {
     res: Response,
     next: NextFunction
   ): Promise<void> {
-    
     try {
       const productId = parseInt(req.params.id, 10);
       const deleted = await this.productService.delete(productId);
-      
+
       if (deleted) {
         res.status(204).send();
       } else {
