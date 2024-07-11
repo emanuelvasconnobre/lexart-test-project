@@ -1,9 +1,19 @@
 import { Column, DataType, Model, Table } from "sequelize-typescript";
 
-@Table
+@Table({
+  initialAutoIncrement: "1",
+  tableName: "products",
+  createdAt: true,
+  name: {
+    plural: "products",
+    singular: "product",
+  },
+})
 export class Product extends Model<Product> {
   @Column({
     primaryKey: true,
+    allowNull: true,
+    autoIncrement: true,
   })
   id?: number;
 
