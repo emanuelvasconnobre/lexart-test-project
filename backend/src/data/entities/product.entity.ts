@@ -47,11 +47,3 @@ export class Product extends Model<Product> {
   })
   description!: string;
 }
-
-export type ProductCreationAttributes = {
-  name: string;
-  brand: string;
-  model: string;
-  price: number;
-  description: string;
-};
