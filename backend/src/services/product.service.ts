@@ -1,9 +1,14 @@
 import { Product } from "@data/entities";
 import { ProductRepository } from "@data/repositories";
 import { ProductModel } from "domain/models";
+import { DestroyOptions } from "sequelize";
 
 export class ProductService {
   repository = new ProductRepository();
+
+  count() {
+    return this.repository.count();
+  }
 
   getMany(page: number, countPerPage: number) {
     const take = +countPerPage;
@@ -22,6 +27,13 @@ export class ProductService {
     return createdProduct;
   }
 
+  async createMany(
+    productData: Omit<ProductModel, "id">[]
+  ): Promise<Product[]> {
+    const createdProduct = await this.repository.createMany(productData);
+    return createdProduct;
+  }
+
   async update(
     id: number,
     productData: Partial<Product>
@@ -32,6 +44,13 @@ export class ProductService {
 
   async delete(id: number): Promise<boolean> {
     const deleted = await this.repository.deleteOne(id);
+    return deleted;
+  }
+
+  async deleteMany(
+    options: Omit<DestroyOptions<Product>, "transation">
+  ): Promise<number> {
+    const deleted = await this.repository.deleteMany(options);
     return deleted;
   }
 }

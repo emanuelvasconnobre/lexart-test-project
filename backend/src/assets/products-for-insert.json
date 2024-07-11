@@ -1,0 +1,23 @@
+[
+    {
+        "name": "iPhone 13",
+        "brand": "Apple",
+        "model": "A2483",
+        "price": 799.99,
+        "description": "The latest iPhone with A15 Bionic chip and 5G technology."
+    },
+    {
+        "name": "Samsung Galaxy S21",
+        "brand": "Samsung",
+        "model": "SM-G991B",
+        "price": 699.99,
+        "description": "Samsung's flagship smartphone with Exynos 2100 processor and 8K video recording."
+    },
+    {
+        "name": "Google Pixel 6",
+        "brand": "Google",
+        "model": "G9S9B",
+        "price": 599.99,
+        "description": "Google's latest smartphone featuring the Tensor processor and advanced camera features."
+    }
+]
