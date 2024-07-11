@@ -1,6 +1,4 @@
 import { Product } from "@data/entities";
-import { Optional } from "sequelize";
-import { NullishPropertiesOf } from "sequelize/types/utils";
 
 export class ProductRepository {
   async getMany(take: number, skip: number) {

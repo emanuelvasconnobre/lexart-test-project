@@ -1,4 +1,4 @@
-import { Product } from "@data/entities";
+import { Product, ProductDeleted, User } from "@data/entities";
 import { Sequelize } from "sequelize-typescript";
 
 export const sequelize = new Sequelize({
@@ -8,5 +8,5 @@ export const sequelize = new Sequelize({
   host: process.env.DB_HOST,
   dialect: "postgres",
   port: parseInt(process.env.DB_PORT || "6500"),
-  models: [Product],
+  models: [Product, ProductDeleted, User],
 });
