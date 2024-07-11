@@ -22,10 +22,15 @@ const initializeServer = async () => {
 
   app.use(
     session({
-      secret: "your-secret-key",
+      secret: process.env["SECRET"],
       resave: false,
-      saveUninitialized: true,
-      cookie: { secure: false },
+      saveUninitialized: false,
+      cookie: {
+        maxAge: 24 * 60 * 60 * 1000,
+        secure: false,
+        httpOnly: true,
+        sameSite: "strict",
+      },
     })
   );
 

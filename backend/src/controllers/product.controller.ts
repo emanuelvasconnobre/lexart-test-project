@@ -5,6 +5,7 @@ import { CreateProductDto, UpdateProductDto } from "validation/product";
 import { NotFoundHttpException } from "exceptions/http-exceptions";
 import { validateDto } from "utils";
 import { ApiResponse } from "./protocols/api-response";
+import { isAuthenticatedMiddleware } from "middlewares";
 
 export class ProductController extends BaseController {
   private productService = new ProductService();
@@ -12,11 +13,31 @@ export class ProductController extends BaseController {
 
   constructor() {
     super();
-    this.router.get(`/${this.routeName}/`, this.getAllProducts.bind(this));
-    this.router.get(`/${this.routeName}/:id`, this.getProductById.bind(this));
-    this.router.post(`/${this.routeName}/`, this.createProduct.bind(this));
-    this.router.put(`/${this.routeName}/:id`, this.updateProduct.bind(this));
-    this.router.delete(`/${this.routeName}/:id`, this.deleteProduct.bind(this));
+    this.router.get(
+      `/${this.routeName}/`,
+      isAuthenticatedMiddleware,
+      this.getAllProducts.bind(this)
+    );
+    this.router.get(
+      `/${this.routeName}/:id`,
+      isAuthenticatedMiddleware,
+      this.getProductById.bind(this)
+    );
+    this.router.post(
+      `/${this.routeName}/`,
+      isAuthenticatedMiddleware,
+      this.createProduct.bind(this)
+    );
+    this.router.put(
+      `/${this.routeName}/:id`,
+      isAuthenticatedMiddleware,
+      this.updateProduct.bind(this)
+    );
+    this.router.delete(
+      `/${this.routeName}/:id`,
+      isAuthenticatedMiddleware,
+      this.deleteProduct.bind(this)
+    );
   }
 
   protected initializeRoutes(): void {}

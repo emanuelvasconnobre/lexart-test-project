@@ -2,14 +2,19 @@ import { NextFunction, Request, Response } from "express";
 import { BaseController } from "./protocols/base-controller";
 import { LogService } from "services";
 import { ApiResponse } from "./protocols/api-response";
+import { isAuthenticatedMiddleware } from "middlewares";
 
-export class ProductController extends BaseController {
+export class LogController extends BaseController {
   private service = new LogService();
   private routeName = "log";
 
   constructor() {
     super();
-    this.router.get(`/${this.routeName}/`, this.getMany.bind(this));
+    this.router.get(
+      `/${this.routeName}/`,
+      isAuthenticatedMiddleware,
+      this.getMany.bind(this)
+    );
   }
 
   protected initializeRoutes(): void {}

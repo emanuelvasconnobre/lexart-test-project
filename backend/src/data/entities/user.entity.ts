@@ -16,7 +16,7 @@ export class User extends Model<User> {
     allowNull: false,
     primaryKey: true,
   })
-  id?: string;
+  id!: string;
 
   @Column({
     type: DataType.STRING,

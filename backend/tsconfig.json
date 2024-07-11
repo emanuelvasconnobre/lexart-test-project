@@ -4,7 +4,7 @@
     "module": "commonjs",
     "outDir": "./dist",
     "rootDir": "./src",
-    "strict": true,
+    "strict": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
@@ -31,5 +31,12 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "typeAcquisition": {
+    "enable": true,
+    "include": [
+      "./src/types",
+      "./node_modules/@types"
+    ]
+  }
 }

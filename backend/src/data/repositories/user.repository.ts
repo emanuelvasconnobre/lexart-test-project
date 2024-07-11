@@ -1,4 +1,7 @@
 import { User } from "@data/entities";
+import { UserModel } from "domain/models";
+import { Optional } from "sequelize";
+import { NullishPropertiesOf } from "sequelize/types/utils";
 
 export class UserRepository {
   async getMany(take: number, skip: number) {
@@ -23,8 +26,10 @@ export class UserRepository {
     return user;
   }
 
-  async createOne(userData: Omit<User, "id">) {
-    const newUser = await User.create(userData);
+  async createOne(userData: UserModel) {
+    const newUser = await User.create(
+      userData as Optional<User, NullishPropertiesOf<User>>
+    );
     return newUser;
   }
 
