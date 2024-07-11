@@ -1,14 +1,9 @@
-import { ProductDeleted } from "@data/entities";
 import { UserRepository } from "@data/repositories";
 import { LoginDto, RegisterDto } from "validation/auth";
 import {
-  ForbiddenHttpException,
-  InternalServerHttpException,
-  UnauthorizedHttpException,
+  ForbiddenHttpException, UnauthorizedHttpException
 } from "exceptions/http-exceptions";
 import bcrypt from "bcrypt";
-import { Session } from "express-session";
-import { Request } from "express";
 
 export class AuthService {
   repository = new UserRepository();

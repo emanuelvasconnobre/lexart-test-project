@@ -35,14 +35,21 @@ export class AuthController extends BaseController {
     try {
       await validateDto(LoginDto, body);
       const user = await this.authService.login(body);
-      req.session.save((err: any) => {
-        (req.session as any).user = user;
+      req.session?.save((err: any) => {
         if (err) {
           throw new InternalServerHttpException({
             message: "Could not log out.",
             traceback: err,
           });
         } else {
+          if (req.session) {
+            req.session.user = {
+              id: user.id,
+              name: user.name,
+              username: user.username,
+              email: user.email,
+            };
+          }
           res.status(200).json(new ApiResponse(undefined, "Logged in"));
         }
       });
@@ -53,7 +60,7 @@ export class AuthController extends BaseController {
 
   private logout(req: Request, res: Response, next: NextFunction): void {
     try {
-      req.session.destroy((err) => {
+      req.session?.destroy((err) => {
         if (err) {
           throw new InternalServerHttpException({
             message: "Could not log out.",

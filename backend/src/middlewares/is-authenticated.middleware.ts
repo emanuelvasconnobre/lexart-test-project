@@ -6,8 +6,7 @@ export const isAuthenticatedMiddleware = (
   res: Response,
   next: NextFunction
 ) => {
-  if (req.session && (req.session as any).user) {
-    console.log(req.session.id);
+  if (req.session && req.session.user) {
     next();
   } else {
     throw new UnauthorizedHttpException();
