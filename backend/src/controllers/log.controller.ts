@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { BaseController } from "./protocols/base-controller";
 import { LogService } from "services";
+import { ApiResponse } from "./protocols/api-response";
 
 export class ProductController extends BaseController {
   private service = new LogService();
@@ -25,7 +26,7 @@ export class ProductController extends BaseController {
 
     try {
       const logs = await this.service.getMany(page, countPerPage);
-      res.status(200).json(logs);
+      res.status(200).json(new ApiResponse(logs));
     } catch (error: any) {
       next(error);
     }
