@@ -2,14 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { BaseController } from "./protocols/base-controller";
 import { ProductService } from "services";
 import { CreateProductDto, UpdateProductDto } from "validation/product";
-import { validate } from "class-validator";
-import { plainToClass } from "class-transformer";
 import { NotFoundHttpException } from "exceptions/http-exceptions";
-import { BadRequestHttpException } from "exceptions/http-exceptions/bad-request.http-exception";
-import {
-  ValidationException,
-  ValidationField,
-} from "exceptions/app-exceptions";
 import { validateDto } from "utils";
 
 export class ProductController extends BaseController {
