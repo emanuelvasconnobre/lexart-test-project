@@ -1,5 +1,6 @@
 import { ProductDeleted } from "@data/entities";
 import { ProductDeletedRepository } from "@data/repositories";
+import { ProductDeletedModel } from "domain/models";
 
 export class LogService {
   repository = new ProductDeletedRepository();
@@ -11,7 +12,7 @@ export class LogService {
     return this.repository.getMany(take, skip);
   }
 
-  async create(productData: Omit<ProductDeleted, "id">): Promise<ProductDeleted> {
+  async create(productData: Omit<ProductDeletedModel, "id">): Promise<ProductDeleted> {
     const createdObject = await this.repository.createOne(productData);
     return createdObject;
   }

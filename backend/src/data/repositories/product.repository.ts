@@ -1,4 +1,7 @@
 import { Product } from "@data/entities";
+import { ProductModel } from "domain/models";
+import { Optional } from "sequelize";
+import { NullishPropertiesOf } from "sequelize/types/utils";
 
 export class ProductRepository {
   async getMany(take: number, skip: number) {
@@ -14,14 +17,14 @@ export class ProductRepository {
     return product;
   }
 
-  async createOne(
-    productData: Omit<Product, "id">
-  ) {
-    const newProduct = await Product.create(productData);
+  async createOne(productData: Omit<ProductModel, "id">) {
+    const newProduct = await Product.create(
+      productData as Optional<Product, NullishPropertiesOf<Product>>
+    );
     return newProduct;
   }
 
-  async updateOne(id: number, productData: Partial<Product>) {
+  async updateOne(id: number, productData: Partial<ProductModel>) {
     const updatedProduct = await Product.update(productData, {
       where: { id },
       returning: true,

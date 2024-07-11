@@ -1,5 +1,6 @@
 import { Product } from "@data/entities";
 import { ProductRepository } from "@data/repositories";
+import { ProductModel } from "domain/models";
 
 export class ProductService {
   repository = new ProductRepository();
@@ -16,7 +17,7 @@ export class ProductService {
     return product;
   }
 
-  async create(productData: Omit<Product, "id">): Promise<Product> {
+  async create(productData: Omit<ProductModel, "id">): Promise<Product> {
     const createdProduct = await this.repository.createOne(productData);
     return createdProduct;
   }

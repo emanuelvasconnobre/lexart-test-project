@@ -17,6 +17,7 @@ export function exceptionMiddleware(
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json(error.serialize());
   } else {
+    console.log(error);
     return res.status(500).json({
       error: {
         message: "Erro interno do servidor",

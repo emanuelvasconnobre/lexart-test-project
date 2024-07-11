@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { BaseController } from "./protocols/base-controller";
-import { ProductService } from "services";
+import { LogService, ProductService } from "services";
 import { CreateProductDto, UpdateProductDto } from "validation/product";
 import { NotFoundHttpException } from "exceptions/http-exceptions";
 import { validateDto } from "utils";
@@ -9,6 +9,7 @@ import { isAuthenticatedMiddleware } from "middlewares";
 
 export class ProductController extends BaseController {
   private productService = new ProductService();
+  private logService = new LogService();
   private routeName = "product";
 
   constructor() {
@@ -131,9 +132,22 @@ export class ProductController extends BaseController {
   ): Promise<void> {
     try {
       const productId = parseInt(req.params.id, 10);
+      const productData = await this.productService.getById(productId);
       const deleted = await this.productService.delete(productId);
 
       if (deleted) {
+        await this.logService.create({
+          productId,
+          brand: productData!.brand,
+          model: productData!.model,
+          name: productData!.name,
+          price: productData!.price,
+          description: productData!.description,
+          deletedAt: new Date(),
+          userId: req.session!.user.id,
+          username: req.session!.user.username,
+        });
+        
         res.status(204).send();
       } else {
         throw new NotFoundHttpException({
