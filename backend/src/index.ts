@@ -13,6 +13,7 @@ import {
   registerLibrariesHandler,
   sessionHandler,
 } from "@main/handlers";
+import { logger } from "@config/winston";
 
 const app = express();
 const port = process.env["PORT"] || 3000;
@@ -31,7 +32,7 @@ const initializeServer = async () => {
   app.use(exceptionMiddleware);
 
   app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+    logger.info(`Server is running on http://localhost:${port}`);
   });
 };
 
