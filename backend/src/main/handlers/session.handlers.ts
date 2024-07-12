@@ -1,7 +1,7 @@
-import { sequelize } from "@config/sequelize";
 import { Application } from "express";
 import session from "express-session";
 import pgSession from "connect-pg-simple";
+import { sequelize } from "@config/sequelize";
 
 export const sessionHandler = (app: Application) => {
   const pgSessionInstance = pgSession(session);
@@ -11,7 +11,9 @@ export const sessionHandler = (app: Application) => {
       store: new pgSessionInstance({
         conObject: {
           ...sequelize.options,
+          user: sequelize.options.username,
         },
+        createTableIfMissing: true,
         tableName: "session",
       }),
       secret: process.env["SECRET"] || "secret",
