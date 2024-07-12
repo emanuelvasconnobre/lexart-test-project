@@ -1,20 +1,26 @@
-import { Transform, TransformFnParams } from 'class-transformer';
-import { IsArray, ValidationOptions, registerDecorator, ValidationArguments } from 'class-validator';
-import { applyDecorators } from 'utils';
+import { Transform, TransformFnParams } from "class-transformer";
+import {
+  ValidationOptions,
+  registerDecorator,
+  ValidationArguments
+} from "class-validator";
+import { applyDecorators } from "@modules/utils";
 
-export function CustomIsArray(config: ValidationOptions = {}): PropertyDecorator {
+export function CustomIsArray(
+  config: ValidationOptions = {}
+): PropertyDecorator {
   return applyDecorators(
     Transform(({ value }: TransformFnParams) => {
       return value != undefined && value.length > 0 ? value : [];
     }),
-    function(target: Object, propertyName: string | symbol) {
+    function (target: Object, propertyName: string | symbol) {
       registerDecorator({
-        name: 'isArray',
+        name: "isArray",
         target: target.constructor,
         propertyName: propertyName as string,
         options: {
           message: ({ property }: ValidationArguments) => {
-            return `Campo "${property}" precisa ser uma lista de itens.`;
+            return `The field "${property}" must be a list of items.`;
           },
           ...config,
         },

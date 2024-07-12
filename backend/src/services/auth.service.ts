@@ -1,8 +1,8 @@
-import { UserRepository } from "@data/repositories";
-import { LoginDto, RegisterDto } from "validation/auth";
+import { UserRepository } from "@modules/data/repositories";
+import { LoginDto, RegisterDto } from "@modules/validation/auth";
 import {
   ForbiddenHttpException, UnauthorizedHttpException
-} from "exceptions/http-exceptions";
+} from "@modules/exceptions/http-exceptions";
 import bcrypt from "bcrypt";
 
 export class AuthService {

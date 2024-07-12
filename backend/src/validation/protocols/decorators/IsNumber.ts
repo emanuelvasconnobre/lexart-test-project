@@ -6,7 +6,7 @@ import {
   ValidationArguments,
   ValidationOptions,
 } from "class-validator";
-import { applyDecorators } from "utils";
+import { applyDecorators } from "@modules/utils";
 
 export function CustomIsNumber(
   config: ValidationOptions = {}
@@ -19,7 +19,7 @@ export function CustomIsNumber(
         propertyName: propertyName as string,
         options: {
           message: ({ property }: ValidationArguments) => {
-            return `Campo ${property} precisa possuir um formato de número válido.`;
+            return `The field ${property} must have a valid number format.`;
           },
           ...config,
         },

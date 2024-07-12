@@ -1,17 +1,23 @@
-import { Transform, TransformFnParams } from 'class-transformer';
-import { IsDate, registerDecorator, ValidationArguments, ValidationOptions } from 'class-validator';
-import { applyDecorators } from 'utils';
+import { Transform, TransformFnParams } from "class-transformer";
+import {
+  registerDecorator,
+  ValidationArguments,
+  ValidationOptions
+} from "class-validator";
+import { applyDecorators } from "@modules/utils";
 
-export function CustomIsDate(config: ValidationOptions = {}): PropertyDecorator {
+export function CustomIsDate(
+  config: ValidationOptions = {}
+): PropertyDecorator {
   return applyDecorators(
-    function(target: Object, propertyName: string | symbol) {
+    function (target: Object, propertyName: string | symbol) {
       registerDecorator({
-        name: 'isDate',
+        name: "isDate",
         target: target.constructor,
         propertyName: propertyName as string,
         options: {
           message: ({ property }: ValidationArguments) => {
-            return `Campo ${property} precisa ter um formato de data válida.`;
+            return `The field ${property} must have a valid date format.`;
           },
           ...config,
         },

@@ -1,12 +1,12 @@
 import {
-  isString,
+  isEmail,
   registerDecorator,
   ValidationArguments,
   ValidationOptions,
 } from "class-validator";
 import { applyDecorators } from "@modules/utils";
 
-export function CustomIsString(
+export function CustomIsEmail(
   config: ValidationOptions = {}
 ): PropertyDecorator {
   return applyDecorators(function (
@@ -14,18 +14,18 @@ export function CustomIsString(
     propertyName: string | symbol
   ) {
     registerDecorator({
-      name: "isString",
+      name: "isEmail",
       target: target.constructor,
       propertyName: propertyName as string,
       options: {
         message: ({ property }: ValidationArguments) => {
-          return `The field ${property} must be of type string.`;
+          return `The field ${property} must have a valid email format.`;
         },
         ...config,
       },
       validator: {
         validate(value: any) {
-          return isString(value);
+          return isEmail(value);
         },
       },
     });

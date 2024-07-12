@@ -1,6 +1,6 @@
-import { Product } from "@data/entities";
-import { ProductRepository } from "@data/repositories";
-import { ProductModel } from "domain/models";
+import { Product } from "@modules/data/entities";
+import { ProductRepository } from "@modules/data/repositories";
+import { ProductModel } from "@modules/domain/models";
 import { DestroyOptions } from "sequelize";
 
 export class ProductService {

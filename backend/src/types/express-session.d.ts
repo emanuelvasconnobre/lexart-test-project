@@ -1,12 +1,15 @@
-import "express-session";
 
-declare module "express-session" {
-  interface SessionData {
-    user: {
-      id: string;
-      name: string;
-      username: string;
-      email: string;
-    };
+declare global {
+  import "express-session";
+
+  module "express-session" {
+    interface SessionData {
+      user: {
+        id: string;
+        name: string;
+        username: string;
+        email: string;
+      };
+    }
   }
 }

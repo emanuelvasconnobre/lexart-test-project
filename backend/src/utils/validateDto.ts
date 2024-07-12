@@ -1,10 +1,10 @@
 import { plainToClass } from "class-transformer";
 import { validate } from "class-validator";
-import { BadRequestHttpException } from "exceptions/http-exceptions/bad-request.http-exception";
+import { BadRequestHttpException } from "@modules/exceptions/http-exceptions/bad-request.http-exception";
 import {
   ValidationException,
   ValidationField,
-} from "exceptions/app-exceptions";
+} from "@modules/exceptions/app-exceptions";
 
 export async function validateDto<T extends object>(
   dtoClass: new () => T,

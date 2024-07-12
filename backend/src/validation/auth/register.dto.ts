@@ -1,4 +1,4 @@
-import { CustomIsString } from "validation/protocols/decorators";
+import { CustomIsEmail, CustomIsString } from "@modules/validation/protocols/decorators";
 
 export class RegisterDto {
   @CustomIsString()
@@ -7,7 +7,7 @@ export class RegisterDto {
   @CustomIsString()
   name!: string;
 
-  @CustomIsString()
+  @CustomIsEmail()
   email!: string;
 
   @CustomIsString()
