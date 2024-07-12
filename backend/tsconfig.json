@@ -1,16 +1,17 @@
 {
   "compilerOptions": {
+    "alwaysStrict": true,
     "target": "ES6",
     "module": "commonjs",
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "strict": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "baseUrl": "./src",
+    "removeComments": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "./src",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "paths": {
       "@controllers/*": [
         "controllers/*"
@@ -26,17 +27,13 @@
       ]
     }
   },
+  "ts-node": {
+    "files": true
+  },
   "include": [
-    "src/**/*"
+    "src/**/*.ts",
   ],
   "exclude": [
     "node_modules"
-  ],
-  "typeAcquisition": {
-    "enable": true,
-    "include": [
-      "./src/types",
-      "./node_modules/@types"
-    ]
-  }
+  ]
 }
