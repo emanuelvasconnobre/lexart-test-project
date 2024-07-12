@@ -1,7 +1,7 @@
-import { sequelize } from "@config/sequelize";
-import { Product } from "@data/entities";
-import { ProductModel } from "domain/models";
-import { UnexpectedException } from "exceptions/app-exceptions";
+import { sequelize } from "@modules/config/sequelize";
+import { Product } from "@modules/data/entities";
+import { ProductModel } from "@modules/domain/models";
+import { UnexpectedException } from "@modules/exceptions/app-exceptions";
 import { DestroyOptions, Optional } from "sequelize";
 import { NullishPropertiesOf } from "sequelize/types/utils";
 

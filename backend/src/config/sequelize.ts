@@ -1,4 +1,4 @@
-import { Product, ProductDeleted, User } from "@data/entities";
+import { Product, ProductDeleted, User } from "@modules/data/entities";
 import { Sequelize } from "sequelize-typescript";
 import { logger } from "./winston";
 

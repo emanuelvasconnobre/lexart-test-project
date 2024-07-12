@@ -1,6 +1,6 @@
-import { User } from "@data/entities";
-import { UserModel } from "domain/models";
-import { UnexpectedException } from "exceptions/app-exceptions";
+import { User } from "@modules/data/entities";
+import { UserModel } from "@modules/domain/models";
+import { UnexpectedException } from "@modules/exceptions/app-exceptions";
 import { Optional } from "sequelize";
 import { NullishPropertiesOf } from "sequelize/types/utils";
 

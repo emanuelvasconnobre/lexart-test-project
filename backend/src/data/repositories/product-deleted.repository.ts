@@ -1,6 +1,6 @@
-import { ProductDeleted } from "@data/entities";
-import { ProductDeletedModel } from "domain/models";
-import { UnexpectedException } from "exceptions/app-exceptions";
+import { ProductDeleted } from "@modules/data/entities";
+import { ProductDeletedModel } from "@modules/domain/models";
+import { UnexpectedException } from "@modules/exceptions/app-exceptions";
 import { NullishPropertiesOf } from "sequelize/types/utils";
 
 export class ProductDeletedRepository {

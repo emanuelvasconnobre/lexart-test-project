@@ -1,6 +1,6 @@
-import { ProductDeleted } from "@data/entities";
-import { ProductDeletedRepository } from "@data/repositories";
-import { ProductDeletedModel } from "domain/models";
+import { ProductDeleted } from "@modules/data/entities";
+import { ProductDeletedRepository } from "@modules/data/repositories";
+import { ProductDeletedModel } from "@modules/domain/models";
 
 export class LogService {
   repository = new ProductDeletedRepository();

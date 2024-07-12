@@ -1,14 +1,14 @@
 import { NextFunction, Request, Response } from "express";
 import { BaseController } from "./protocols/base-controller";
-import { AuthService, ProductService } from "services";
-import { CreateProductDto, UpdateProductDto } from "validation/product";
+import { AuthService, ProductService } from "@modules/services";
+import { CreateProductDto, UpdateProductDto } from "@modules/validation/product";
 import {
   InternalServerHttpException,
   NotFoundHttpException,
-} from "exceptions/http-exceptions";
-import { validateDto } from "utils";
+} from "@modules/exceptions/http-exceptions";
+import { validateDto } from "@modules/utils";
 import { ApiResponse } from "./protocols/api-response";
-import { LoginDto, RegisterDto } from "validation/auth";
+import { LoginDto, RegisterDto } from "@modules/validation/auth";
 
 /**
  * @swagger

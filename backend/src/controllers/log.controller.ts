@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import { BaseController } from "./protocols/base-controller";
-import { LogService } from "services";
+import { LogService } from "@modules/services";
 import { ApiResponse } from "./protocols/api-response";
-import { isAuthenticatedMiddleware } from "middlewares";
+import { isAuthenticatedMiddleware } from "@modules/middlewares";
 
 export class LogController extends BaseController {
   private service = new LogService();

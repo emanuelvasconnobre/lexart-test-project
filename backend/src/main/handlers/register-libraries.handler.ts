@@ -2,8 +2,8 @@ import { Application, ErrorRequestHandler } from "express";
 import morgan from "morgan";
 import cors, { CorsOptions } from "cors";
 import helmet from "helmet";
-import { logger } from "@config/winston";
-import { ForbiddenHttpException } from "exceptions/http-exceptions";
+import { logger } from "@modules/config/winston";
+import { ForbiddenHttpException } from "@modules/exceptions/http-exceptions";
 
 const stream = {
   write: (message: string) => {

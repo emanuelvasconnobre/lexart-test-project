@@ -4,7 +4,7 @@ import {
   ValidationArguments,
   ValidationOptions,
 } from "class-validator";
-import { applyDecorators } from "utils";
+import { applyDecorators } from "@modules/utils";
 
 export function CustomIsEmail(
   config: ValidationOptions = {}

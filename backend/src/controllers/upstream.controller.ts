@@ -1,10 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import { BaseController } from "./protocols/base-controller";
-import { ApiResponse } from "./protocols/api-response";
-import { isAuthenticatedMiddleware } from "middlewares";
+import { isAuthenticatedMiddleware } from "@modules/middlewares";
 import path from "path";
 import { readFile } from "fs";
-import { ProductService } from "services";
+import { ProductService } from "@modules/services";
 
 export class UpstreamController extends BaseController {
   private productService = new ProductService();
@@ -43,11 +42,11 @@ export class UpstreamController extends BaseController {
    *             schema:
    *               type: string
    *               example: |
-   *                 data: {"event":"progress","data":{"progress":10}}
+   *                 data: {"event":"progress","@modules/data":{"progress":10}}
    *
-   *                 data: {"event":"progress","data":{"progress":20}}
+   *                 data: {"event":"progress","@modules/data":{"progress":20}}
    *
-   *                 data: {"event":"complete","data":{"message":"All products deleted."}}
+   *                 data: {"event":"complete","@modules/data":{"message":"All products deleted."}}
    *       '500':
    *         description: Error event stream indicating an error during the deletion process.
    *         content:
@@ -55,7 +54,7 @@ export class UpstreamController extends BaseController {
    *             schema:
    *               type: string
    *               example: |
-   *                 data: {"event":"error","data":{"message":"An error occurred while deleting products."}}
+   *                 data: {"event":"error","@modules/data":{"message":"An error occurred while deleting products."}}
    */
   private async deleteAllProducts(
     req: Request,

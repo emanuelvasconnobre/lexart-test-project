@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 import { BaseController } from "./protocols/base-controller";
-import { LogService, ProductService } from "services";
-import { CreateProductDto, UpdateProductDto } from "validation/product";
-import { NotFoundHttpException } from "exceptions/http-exceptions";
-import { validateDto } from "utils";
+import { LogService, ProductService } from "@modules/services";
+import { CreateProductDto, UpdateProductDto } from "@modules/validation/product";
+import { NotFoundHttpException } from "@modules/exceptions/http-exceptions";
+import { validateDto } from "@modules/utils";
 import { ApiResponse } from "./protocols/api-response";
-import { isAuthenticatedMiddleware } from "middlewares";
+import { isAuthenticatedMiddleware } from "@modules/middlewares";
 
 /**
  * @swagger

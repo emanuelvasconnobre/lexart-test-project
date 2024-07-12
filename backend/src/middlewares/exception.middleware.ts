@@ -1,7 +1,7 @@
 // src/middlewares/errorHandler.ts
 
-import { logger } from "@config/winston";
-import { AppException, HttpException } from "exceptions/protocols";
+import { logger } from "@modules/config/winston";
+import { AppException, HttpException } from "@modules/exceptions/protocols";
 import { Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
 

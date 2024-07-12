@@ -4,18 +4,18 @@ dotenv.config();
 
 // decorators
 import "reflect-metadata";
+import "module-alias/register";
 
 import express from "express";
-import { sequelize } from "@config/sequelize";
-import { exceptionMiddleware } from "middlewares";
+import { sequelize } from "@modules/config/sequelize";
+import { exceptionMiddleware } from "@modules/middlewares";
 import {
   registerControllersHandler,
   registerLibrariesHandler,
   sessionHandler,
   swaggerHandler,
-} from "@main/handlers";
-import { logger } from "@config/winston";
-
+} from "@modules/main/handlers";
+import { logger } from "@modules/config/winston";
 
 const app = express();
 const port = process.env["PORT"] || 3000;

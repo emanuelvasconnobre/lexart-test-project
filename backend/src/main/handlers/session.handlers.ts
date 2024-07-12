@@ -1,7 +1,7 @@
 import { Application } from "express";
 import session from "express-session";
 import pgSession from "connect-pg-simple";
-import { sequelize } from "@config/sequelize";
+import { sequelize } from "@modules/config/sequelize";
 
 export const sessionHandler = (app: Application) => {
   const pgSessionInstance = pgSession(session);

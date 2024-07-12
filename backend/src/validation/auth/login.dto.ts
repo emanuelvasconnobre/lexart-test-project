@@ -1,4 +1,4 @@
-import { CustomIsEmail, CustomIsString } from "validation/protocols/decorators";
+import { CustomIsEmail, CustomIsString } from "@modules/validation/protocols/decorators";
 
 export class LoginDto {
   @CustomIsEmail()

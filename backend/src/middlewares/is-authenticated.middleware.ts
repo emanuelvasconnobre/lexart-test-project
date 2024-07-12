@@ -1,4 +1,4 @@
-import { UnauthorizedHttpException } from "exceptions/http-exceptions";
+import { UnauthorizedHttpException } from "@modules/exceptions/http-exceptions";
 import { NextFunction, Request, Response } from "express";
 
 export const isAuthenticatedMiddleware = (

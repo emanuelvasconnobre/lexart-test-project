@@ -1,7 +1,7 @@
 import {
   CustomIsNumber,
   CustomIsString,
-} from "validation/protocols/decorators";
+} from "@modules/validation/protocols/decorators";
 
 export class CreateProductDto {
   @CustomIsString()

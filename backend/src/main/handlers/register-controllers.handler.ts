@@ -1,5 +1,5 @@
 import { Application } from "express";
-import { loadControllers } from "@main/helpers";
+import { loadControllers } from "@modules/main/helpers";
 
 export const registerControllersHandler = async (app: Application) => {
   const controllers = await loadControllers();
