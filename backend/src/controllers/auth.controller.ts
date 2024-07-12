@@ -10,6 +10,53 @@ import { validateDto } from "utils";
 import { ApiResponse } from "./protocols/api-response";
 import { LoginDto, RegisterDto } from "validation/auth";
 
+/**
+ * @swagger
+ * tags:
+ *   name: Auth
+ *   description: Authentication routes
+ */
+
+/**
+   * @swagger
+   * definitions:
+   *   ApiResponse:
+   *     type: object
+   *     properties:
+   *       message:
+   *         type: string
+   *         description: API response message.
+   *       data:
+   *         type: object
+   *         description: Optional data of API response.
+   *   LoginDto:
+   *     type: object
+   *     properties:
+   *       email:
+   *         type: string
+   *         format: email
+   *         description: User's email address.
+   *       password:
+   *         type: string
+   *         description: User's password.
+    *   RegisterDto:
+    *     type: object
+    *     properties:
+    *       username:
+    *         type: string
+    *         description: Username of the user.
+    *       name:
+    *         type: string
+    *         description: Name of the user.
+    *       email:
+    *         type: string
+    *         format: email
+    *         description: Email address of the user.
+    *       password:
+    *         type: string
+    *         description: Password of the user.
+   */
+
 export class AuthController extends BaseController {
   private authService = new AuthService();
   private routeName = "auth";
@@ -25,6 +72,28 @@ export class AuthController extends BaseController {
 
   public handleRequest(req: Request, res: Response): void {}
 
+  /**
+   * @swagger
+   * /auth/login:
+   *   post:
+   *     summary: User authentication.
+   *     tags:
+   *       - Auth
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             $ref: '#/definitions/LoginDto'
+   *     responses:
+   *       '200':
+   *         description: User authenticated successfully.
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/definitions/ApiResponse'
+   */
+
   private async login(
     req: Request,
     res: Response,
@@ -38,7 +107,7 @@ export class AuthController extends BaseController {
       req.session?.save((err: any) => {
         if (err) {
           throw new InternalServerHttpException({
-            message: "Could not log out.",
+            message: "Could not log in.",
             traceback: err,
           });
         } else {
@@ -58,6 +127,22 @@ export class AuthController extends BaseController {
     }
   }
 
+
+/**
+ * @swagger
+ * /auth/logout:
+ *   get:
+ *     summary: User logout.
+ *     tags:
+ *       - Auth
+ *     responses:
+ *       '200':
+ *         description: User logged out successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/definitions/ApiResponse'
+ */
   private logout(req: Request, res: Response, next: NextFunction): void {
     try {
       req.session?.destroy((err) => {
@@ -75,6 +160,27 @@ export class AuthController extends BaseController {
     }
   }
 
+  /**
+ * @swagger
+ * /auth/register:
+ *   post:
+ *     summary: Register a new user.
+ *     tags:
+ *       - Auth
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/definitions/RegisterDto'
+ *     responses:
+ *       '200':
+ *         description: User registered successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/definitions/ApiResponse'
+ */
   private async register(
     req: Request,
     res: Response,

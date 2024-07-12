@@ -12,8 +12,10 @@ import {
   registerControllersHandler,
   registerLibrariesHandler,
   sessionHandler,
+  swaggerHandler,
 } from "@main/handlers";
 import { logger } from "@config/winston";
+
 
 const app = express();
 const port = process.env["PORT"] || 3000;
@@ -27,6 +29,7 @@ const initializeServer = async () => {
   sessionHandler(app);
   registerLibrariesHandler(app);
   await registerControllersHandler(app);
+  swaggerHandler(app);
 
   // Exception Middleware
   app.use(exceptionMiddleware);
