@@ -14,7 +14,7 @@ export function CustomIsArray(config: ValidationOptions = {}): PropertyDecorator
         propertyName: propertyName as string,
         options: {
           message: ({ property }: ValidationArguments) => {
-            return `Campo "${property}" precisa ser uma lista de itens.`;
+            return `The field "${property}" must be a list of items.`;
           },
           ...config,
         },

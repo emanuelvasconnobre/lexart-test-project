@@ -19,7 +19,7 @@ export function CustomIsString(
       propertyName: propertyName as string,
       options: {
         message: ({ property }: ValidationArguments) => {
-          return `Campo ${property} precisa ser do tipo texto.`;
+          return `The field ${property} must be of type string.`;
         },
         ...config,
       },

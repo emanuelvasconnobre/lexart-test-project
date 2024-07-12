@@ -11,7 +11,7 @@ export function CustomIsDate(config: ValidationOptions = {}): PropertyDecorator 
         propertyName: propertyName as string,
         options: {
           message: ({ property }: ValidationArguments) => {
-            return `Campo ${property} precisa ter um formato de data válida.`;
+            return `The field ${property} must have a valid date format.`;
           },
           ...config,
         },
