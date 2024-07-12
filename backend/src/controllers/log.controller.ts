@@ -21,6 +21,43 @@ export class LogController extends BaseController {
 
   public handleRequest(req: Request, res: Response): void {}
 
+  /**
+   * @swagger
+   * /log:
+   *   get:
+   *     summary: List all deleted products from the system.
+   *     tags:
+   *       - Logs
+   *     parameters:
+   *       - in: query
+   *         name: page
+   *         schema:
+   *           type: integer
+   *           minimum: 1
+   *         description: Page number for pagination.
+   *       - in: query
+   *         name: countPerPage
+   *         schema:
+   *           type: integer
+   *           minimum: 1
+   *           maximum: 100
+   *         description: Number of records per page.
+   *     responses:
+   *       '200':
+   *         description: List of deleted products.
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: object
+   *               properties:
+   *                 message:
+   *                   type: string
+   *                   example: Success
+   *                 data:
+   *                   type: array
+   *                   items:
+   *                     $ref: '#/components/schemas/ProductDeleted'
+   */
   private async getMany(
     req: Request,
     res: Response,

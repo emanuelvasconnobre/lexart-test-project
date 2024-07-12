@@ -28,6 +28,35 @@ export class UpstreamController extends BaseController {
 
   public handleRequest(req: Request, res: Response): void {}
 
+  /**
+   * @swagger
+   * /upstream:
+   *   delete:
+   *     summary: Delete all products from the database.
+   *     tags:
+   *       - Products
+   *     responses:
+   *       '200':
+   *         description: Event stream indicating the progress and completion of the deletion process.
+   *         content:
+   *           text/event-stream:
+   *             schema:
+   *               type: string
+   *               example: |
+   *                 data: {"event":"progress","data":{"progress":10}}
+   *
+   *                 data: {"event":"progress","data":{"progress":20}}
+   *
+   *                 data: {"event":"complete","data":{"message":"All products deleted."}}
+   *       '500':
+   *         description: Error event stream indicating an error during the deletion process.
+   *         content:
+   *           text/event-stream:
+   *             schema:
+   *               type: string
+   *               example: |
+   *                 data: {"event":"error","data":{"message":"An error occurred while deleting products."}}
+   */
   private async deleteAllProducts(
     req: Request,
     res: Response,
@@ -63,7 +92,7 @@ export class UpstreamController extends BaseController {
       res.write(
         `data: ${JSON.stringify({
           event: "complete",
-          data: { message: "Todos os produtos foram deletados." },
+          data: { message: "All products deleted." },
         })}\n\n`
       );
       res.end();
@@ -71,13 +100,46 @@ export class UpstreamController extends BaseController {
       res.write(
         `data: ${JSON.stringify({
           event: "error",
-          data: { message: "Erro durante a deleção de produtos." },
+          data: { message: "An error occurred while deleting products." },
         })}\n\n`
       );
       res.end();
     }
   }
 
+  /**
+   * @swagger
+   * /upstream:
+   *   get:
+   *     summary: Add test products to the database.
+   *     tags:
+   *       - Products
+   *     responses:
+   *       '200':
+   *         description: Event stream indicating the progress and completion of the bulk insertion process.
+   *         content:
+   *           text/event-stream:
+   *             schema:
+   *               type: string
+   *               example: |
+   *                 event: progress
+   *                 data: {"progress":10}
+   *
+   *                 event: progress
+   *                 data: {"progress":20}
+   *
+   *                 event: complete
+   *                 data: {"message":"All data processed"}
+   *       '500':
+   *         description: Error event stream indicating an error during the bulk insertion process.
+   *         content:
+   *           text/event-stream:
+   *             schema:
+   *               type: string
+   *               example: |
+   *                 event: error
+   *                 data: {"message":"An error occured while inserting products"}
+   */
   private async uploadTestProducts(
     req: Request,
     res: Response,
@@ -131,7 +193,7 @@ export class UpstreamController extends BaseController {
       res.write(
         `data: ${JSON.stringify({
           event: "error",
-          data: { message: "Error during bulk insert" },
+          data: { message: "An error occured while inserting products" },
         })}\n\n`
       );
       res.end();
