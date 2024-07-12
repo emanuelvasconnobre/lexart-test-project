@@ -39,22 +39,22 @@ import { LoginDto, RegisterDto } from "validation/auth";
    *       password:
    *         type: string
    *         description: User's password.
-    *   RegisterDto:
-    *     type: object
-    *     properties:
-    *       username:
-    *         type: string
-    *         description: Username of the user.
-    *       name:
-    *         type: string
-    *         description: Name of the user.
-    *       email:
-    *         type: string
-    *         format: email
-    *         description: Email address of the user.
-    *       password:
-    *         type: string
-    *         description: Password of the user.
+   *   RegisterDto:
+   *     type: object
+   *     properties:
+   *       username:
+   *         type: string
+   *         description: Username of the user.
+   *       name:
+   *         type: string
+   *         description: Name of the user.
+   *       email:
+   *         type: string
+   *         format: email
+   *         description: Email address of the user.
+   *       password:
+   *         type: string
+   *         description: Password of the user.
    */
 
 export class AuthController extends BaseController {
