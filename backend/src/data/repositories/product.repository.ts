@@ -1,77 +1,141 @@
 import { sequelize } from "@config/sequelize";
 import { Product } from "@data/entities";
 import { ProductModel } from "domain/models";
+import { UnexpectedException } from "exceptions/app-exceptions";
 import { DestroyOptions, Optional } from "sequelize";
 import { NullishPropertiesOf } from "sequelize/types/utils";
 
 export class ProductRepository {
   async count() {
-    const products = await Product.count();
-    return products;
+    try {
+      const products = await Product.count();
+      return products;
+    } catch (error: any) {
+      throw new UnexpectedException({
+        message: `Error counting products`,
+        traceback: error.message,
+      });
+    }
   }
 
   async getMany(take: number, skip: number) {
-    const products = await Product.findAll({
-      limit: take,
-      offset: skip,
-    });
-    return products;
+    try {
+      const products = await Product.findAll({
+        limit: take,
+        offset: skip,
+      });
+      return products;
+    } catch (error: any) {
+      throw new UnexpectedException({
+        message: `Error fetching many products`,
+        traceback: error.message,
+      });
+    }
   }
 
   async getById(id: number) {
-    const product = await Product.findByPk(id);
-    return product;
+    try {
+      const product = await Product.findByPk(id);
+      return product;
+    } catch (error: any) {
+      throw new UnexpectedException({
+        message: `Error fetching product by ID`,
+        traceback: error.message,
+      });
+    }
   }
 
   async createOne(productData: Omit<ProductModel, "id">) {
-    const newProduct = await Product.create(
-      productData as Optional<Product, NullishPropertiesOf<Product>>
-    );
-    return newProduct;
+    try {
+      const newProduct = await Product.create(
+        productData as Optional<Product, NullishPropertiesOf<Product>>
+      );
+      return newProduct;
+    } catch (error: any) {
+      throw new UnexpectedException({
+        message: `Error creating product`,
+        traceback: error.message,
+      });
+    }
   }
 
   async createMany(productData: Omit<ProductModel, "id">[]) {
-    return await sequelize.transaction(async (transaction) => {
-      const newProduct = await Product.bulkCreate(
-        productData as Optional<Product, NullishPropertiesOf<Product>>[],
-        { transaction }
-      );
-      return newProduct;
-    });
+    try {
+      return await sequelize.transaction(async (transaction) => {
+        const newProducts = await Product.bulkCreate(
+          productData as Optional<Product, NullishPropertiesOf<Product>>[],
+          { transaction }
+        );
+        return newProducts;
+      });
+    } catch (error: any) {
+      throw new UnexpectedException({
+        message: `Error creating many products`,
+        traceback: error.message,
+      });
+    }
   }
 
   async updateOne(id: number, productData: Partial<ProductModel>) {
-    const updatedProduct = await Product.update(productData, {
-      where: { id },
-      returning: true,
-    });
-    return updatedProduct[1][0];
+    try {
+      const updatedProduct = await Product.update(productData, {
+        where: { id },
+        returning: true,
+      });
+      return updatedProduct[1][0];
+    } catch (error: any) {
+      throw new UnexpectedException({
+        message: `Error updating product`,
+        traceback: error.message,
+      });
+    }
   }
 
   async deleteOne(id: number) {
-    const deletedProduct = await Product.destroy({
-      where: { id },
-    });
+    try {
+      const deletedProduct = await Product.destroy({
+        where: { id },
+      });
 
-    return !!deletedProduct;
+      return !!deletedProduct;
+    } catch (error: any) {
+      throw new UnexpectedException({
+        message: `Error deleting product`,
+        traceback: error.message,
+      });
+    }
   }
 
   async deleteMany(option: Omit<DestroyOptions<Product>, "transation">) {
-    return await sequelize.transaction(async (transaction) => {
-      const newProduct = await Product.destroy({
-        transaction,
-        ...option,
+    try {
+      return await sequelize.transaction(async (transaction) => {
+        const deletedProductsCount = await Product.destroy({
+          transaction,
+          ...option,
+        });
+        return deletedProductsCount;
       });
-      return newProduct;
-    });
+    } catch (error: any) {
+      throw new UnexpectedException({
+        message: `Error deleting many products`,
+        traceback: error.message,
+      });
+    }
   }
 
   async deleteAll() {
-    return await sequelize.transaction(async (transaction) => {
-      const newProduct = await Product.destroy({
-        transaction,
+    try {
+      return await sequelize.transaction(async (transaction) => {
+        const deletedProductsCount = await Product.destroy({
+          transaction,
+        });
+        return !!deletedProductsCount;
       });
-      return !!newProduct;
-    });
+    } catch (error: any) {
+      throw new UnexpectedException({
+        message: `Error deleting all products`,
+        traceback: error.message,
+      });
+    }
   }
 }

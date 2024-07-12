@@ -14,6 +14,7 @@ export function exceptionMiddleware(
   if (error instanceof HttpException) {
     return res.status(error.statusCode).json(error.serialize());
   } else if (error instanceof AppException) {
+    logger.error(`${error.message}: ${error.traceback}`);
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json(error.serialize());

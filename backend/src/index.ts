@@ -25,10 +25,10 @@ const initializeServer = async () => {
 
   // Handlers
   sessionHandler(app);
-  await registerControllersHandler(app);
   registerLibrariesHandler(app);
+  await registerControllersHandler(app);
 
-  // Middlewares
+  // Exception Middleware
   app.use(exceptionMiddleware);
 
   app.listen(port, () => {
