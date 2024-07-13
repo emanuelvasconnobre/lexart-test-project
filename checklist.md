@@ -1,15 +1,15 @@
 ## Requisitos
 ### Backend (Node.js em Vercel functions):
 
-- [ ] Criar uma API RESTful para operações CRUD (Create, Read, Update, Delete) de produtos.
-- [ ] Utilizar Express.js para roteamento.
-- [ ] Utilizar Sequelize para interagir com o banco de dados.
-- [ ] Utilizar o Postgres do Vercel como banco de dados.
-- [ ] Expor uma rota exclusiva para permitir que clientes externos da aplicação consumam os produtos; essas rotas devem utilizar algum tipo de autorização.
-- [ ] Expor uma rota exclusiva para permitir que clientes externos da aplicação insiram produtos; essas rotas devem utilizar algum tipo de autorização. 
-- [ ] Expor serviços externos utilizando Swagger
-- [ ] Crie um procedimento que permita a eliminação de todos os produtos em segundo plano.
-- [ ] Criar um procedimento que permita carregar 50 produtos de teste.
+- [x] Criar uma API RESTful para operações CRUD (Create, Read, Update, Delete) de produtos.
+- [x] Utilizar Express.js para roteamento.
+- [x] Utilizar Sequelize para interagir com o banco de dados.
+- [x] Utilizar o Postgres do Vercel como banco de dados.
+- [x] Expor uma rota exclusiva para permitir que clientes externos da aplicação consumam os produtos; essas rotas devem utilizar algum tipo de autorização.
+- [x] Expor uma rota exclusiva para permitir que clientes externos da aplicação insiram produtos; essas rotas devem utilizar algum tipo de autorização. 
+- [x] Expor serviços externos utilizando Swagger
+- [x] Crie um procedimento que permita a eliminação de todos os produtos em segundo plano.
+- [x] Criar um procedimento que permita carregar 50 produtos de teste.
 
 ### Frontend (React no Vercel):
 
