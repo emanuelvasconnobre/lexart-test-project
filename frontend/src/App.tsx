@@ -1,9 +1,10 @@
 import './App.css'
+import { AppBrowserRouter } from './routes/BrowserRouter'
 
 function App() {
   return (
     <>
-      <p>Hello world</p>
+      <AppBrowserRouter />
     </>
   )
 }
