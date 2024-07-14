@@ -1,7 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import { BaseController } from "./protocols/base-controller";
 import { LogService, ProductService } from "@modules/services";
-import { CreateProductDto, UpdateProductDto } from "@modules/validation/product";
+import {
+  CreateProductDto,
+  UpdateProductDto,
+} from "@modules/validation/product";
 import { NotFoundHttpException } from "@modules/exceptions/http-exceptions";
 import { validateDto } from "@modules/utils";
 import { ApiResponse } from "./protocols/api-response";
@@ -171,7 +174,10 @@ export class ProductController extends BaseController {
 
     try {
       const products = await this.productService.getMany(page, countPerPage);
-      res.status(200).json(new ApiResponse(products));
+      const countElements = await this.productService.count();
+      const countPage = Math.ceil(countElements / countPerPage);
+
+      res.status(200).json(new ApiResponse({ items: products, countPage }));
     } catch (error: any) {
       next(error);
     }
