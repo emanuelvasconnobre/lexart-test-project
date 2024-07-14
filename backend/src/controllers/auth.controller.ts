@@ -1,7 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import { BaseController } from "./protocols/base-controller";
 import { AuthService, ProductService } from "@modules/services";
-import { CreateProductDto, UpdateProductDto } from "@modules/validation/product";
+import {
+  CreateProductDto,
+  UpdateProductDto,
+} from "@modules/validation/product";
 import {
   InternalServerHttpException,
   NotFoundHttpException,
@@ -9,6 +12,7 @@ import {
 import { validateDto } from "@modules/utils";
 import { ApiResponse } from "./protocols/api-response";
 import { LoginDto, RegisterDto } from "@modules/validation/auth";
+import { isAuthenticatedMiddleware } from "@modules/middlewares";
 
 /**
  * @swagger
@@ -18,44 +22,44 @@ import { LoginDto, RegisterDto } from "@modules/validation/auth";
  */
 
 /**
-   * @swagger
-   * definitions:
-   *   ApiResponse:
-   *     type: object
-   *     properties:
-   *       message:
-   *         type: string
-   *         description: API response message.
-   *       data:
-   *         type: object
-   *         description: Optional data of API response.
-   *   LoginDto:
-   *     type: object
-   *     properties:
-   *       email:
-   *         type: string
-   *         format: email
-   *         description: User's email address.
-   *       password:
-   *         type: string
-   *         description: User's password.
-   *   RegisterDto:
-   *     type: object
-   *     properties:
-   *       username:
-   *         type: string
-   *         description: Username of the user.
-   *       name:
-   *         type: string
-   *         description: Name of the user.
-   *       email:
-   *         type: string
-   *         format: email
-   *         description: Email address of the user.
-   *       password:
-   *         type: string
-   *         description: Password of the user.
-   */
+ * @swagger
+ * definitions:
+ *   ApiResponse:
+ *     type: object
+ *     properties:
+ *       message:
+ *         type: string
+ *         description: API response message.
+ *       data:
+ *         type: object
+ *         description: Optional data of API response.
+ *   LoginDto:
+ *     type: object
+ *     properties:
+ *       email:
+ *         type: string
+ *         format: email
+ *         description: User's email address.
+ *       password:
+ *         type: string
+ *         description: User's password.
+ *   RegisterDto:
+ *     type: object
+ *     properties:
+ *       username:
+ *         type: string
+ *         description: Username of the user.
+ *       name:
+ *         type: string
+ *         description: Name of the user.
+ *       email:
+ *         type: string
+ *         format: email
+ *         description: Email address of the user.
+ *       password:
+ *         type: string
+ *         description: Password of the user.
+ */
 
 export class AuthController extends BaseController {
   private authService = new AuthService();
@@ -64,6 +68,11 @@ export class AuthController extends BaseController {
   constructor() {
     super();
     this.router.post(`/${this.routeName}/login`, this.login.bind(this));
+    this.router.post(
+      `/${this.routeName}`,
+      isAuthenticatedMiddleware,
+      this.checkAccess.bind(this)
+    );
     this.router.post(`/${this.routeName}/register`, this.register.bind(this));
     this.router.get(`/${this.routeName}/logout`, this.logout.bind(this));
   }
@@ -71,6 +80,20 @@ export class AuthController extends BaseController {
   protected initializeRoutes(): void {}
 
   public handleRequest(req: Request, res: Response): void {}
+
+  private async checkAccess(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
+    const userInfo = req.session.user ?? {};
+
+    try {
+      res.status(200).json(new ApiResponse(userInfo, "Logged in"));
+    } catch (error: any) {
+      next(error);
+    }
+  }
 
   /**
    * @swagger
@@ -119,7 +142,17 @@ export class AuthController extends BaseController {
               email: user.email,
             };
           }
-          res.status(200).json(new ApiResponse(undefined, "Logged in"));
+          res.status(200).json(
+            new ApiResponse(
+              {
+                id: user.id,
+                name: user.name,
+                username: user.username,
+                email: user.email,
+              },
+              "Logged in"
+            )
+          );
         }
       });
     } catch (error: any) {
@@ -127,22 +160,21 @@ export class AuthController extends BaseController {
     }
   }
 
-
-/**
- * @swagger
- * /auth/logout:
- *   get:
- *     summary: User logout.
- *     tags:
- *       - Auth
- *     responses:
- *       '200':
- *         description: User logged out successfully.
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/definitions/ApiResponse'
- */
+  /**
+   * @swagger
+   * /auth/logout:
+   *   get:
+   *     summary: User logout.
+   *     tags:
+   *       - Auth
+   *     responses:
+   *       '200':
+   *         description: User logged out successfully.
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/definitions/ApiResponse'
+   */
   private logout(req: Request, res: Response, next: NextFunction): void {
     try {
       req.session?.destroy((err) => {
@@ -161,26 +193,26 @@ export class AuthController extends BaseController {
   }
 
   /**
- * @swagger
- * /auth/register:
- *   post:
- *     summary: Register a new user.
- *     tags:
- *       - Auth
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/definitions/RegisterDto'
- *     responses:
- *       '200':
- *         description: User registered successfully.
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/definitions/ApiResponse'
- */
+   * @swagger
+   * /auth/register:
+   *   post:
+   *     summary: Register a new user.
+   *     tags:
+   *       - Auth
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             $ref: '#/definitions/RegisterDto'
+   *     responses:
+   *       '200':
+   *         description: User registered successfully.
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/definitions/ApiResponse'
+   */
   private async register(
     req: Request,
     res: Response,

@@ -1,21 +1,22 @@
 import { toast } from "react-toastify";
+import { ToastLevel } from "../utils/typing/toast-level";
 
 type Props = {
-  type?: "success" | "error" | "warning";
+  level?: ToastLevel;
 };
 
 export const useToast = (
   message: string,
-  options: Props = { type: undefined }
+  options: Props = { level: undefined }
 ) => {
-  switch (options.type) {
-    case "success":
+  switch (options.level) {
+    case ToastLevel.INFO.toString():
       toast.success(message, { className: "custom-toast-success" });
       break;
-    case "error":
+    case ToastLevel.ERROR.toString():
       toast.error(message, { className: "custom-toast-error" });
       break;
-    case "warning":
+    case ToastLevel.WARN.toString():
       toast.warning(message, { className: "custom-toast-warning" });
       break;
     default:

@@ -13,14 +13,13 @@ const stream = {
 
 export const registerLibrariesHandler = (app: Application) => {
   app.use(morgan("combined", { stream }));
-  let corsOptions: CorsOptions = undefined;
 
   const isProduction = process.env.NODE_ENV === "prod";
 
   if (isProduction) {
     const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(",") || [];
 
-    corsOptions = {
+    const corsOptions = {
       origin: function (origin, callback) {
         if (allowedOrigins.indexOf(origin) !== -1) {
           callback(null, true);
@@ -30,10 +29,19 @@ export const registerLibrariesHandler = (app: Application) => {
           );
         }
       },
-      methods: ["GET", "PUT", "DELETE", "POST"],
+      credentials: true,
+      optionsSuccessStatus: 200,
     };
+    app.use(cors(corsOptions));
+  } else {
+    app.use(
+      cors({
+        origin: true,
+        credentials: true,
+        optionsSuccessStatus: 200,
+      })
+    );
   }
 
-  app.use(cors(corsOptions));
   app.use(helmet());
 };
