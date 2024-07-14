@@ -68,13 +68,17 @@ export class AuthController extends BaseController {
   constructor() {
     super();
     this.router.post(`/${this.routeName}/login`, this.login.bind(this));
-    this.router.post(
+    this.router.get(
       `/${this.routeName}`,
       isAuthenticatedMiddleware,
       this.checkAccess.bind(this)
     );
     this.router.post(`/${this.routeName}/register`, this.register.bind(this));
-    this.router.get(`/${this.routeName}/logout`, this.logout.bind(this));
+    this.router.get(
+      `/${this.routeName}/logout`,
+      isAuthenticatedMiddleware,
+      this.logout.bind(this)
+    );
   }
 
   protected initializeRoutes(): void {}
@@ -184,6 +188,7 @@ export class AuthController extends BaseController {
             traceback: err,
           });
         } else {
+          res.clearCookie("connect.sid");
           res.status(200).json(new ApiResponse(undefined, "Logged out"));
         }
       });
