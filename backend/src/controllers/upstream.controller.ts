@@ -4,6 +4,7 @@ import { isAuthenticatedMiddleware } from "@modules/middlewares";
 import path from "path";
 import { readFile } from "fs";
 import { ProductService } from "@modules/services";
+import { logger } from "@modules/config/winston";
 
 export class UpstreamController extends BaseController {
   private productService = new ProductService();
@@ -156,6 +157,7 @@ export class UpstreamController extends BaseController {
       );
 
       readFile(filePath, "utf8", async (err, data) => {
+        logger.error(err);
         if (err) {
           res.write(
             `event: error\ndata: ${JSON.stringify({

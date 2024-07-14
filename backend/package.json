@@ -5,7 +5,8 @@
     "main": "index.ts",
     "scripts": {
         "start": "node dist/index.js",
-        "build": "tsc",
+        "build": "tsc && npm run copy-assets",
+        "copy-assets": "copyfiles -u 1 src/assets/**/* dist",
         "dev": "nodemon --exec ts-node src/index.ts",
         "ts.check": "tsc --project tsconfig.json",
         "add-build": "git add dist",
@@ -44,6 +45,7 @@
         "@types/swagger-ui-express": "^4.1.6",
         "@types/winston": "^2.4.4",
         "concurrently": "^8.2.2",
+        "copyfiles": "^2.4.1",
         "nodemon": "^3.1.4",
         "swagger-jsdoc": "^6.2.8",
         "swagger-ui-express": "^5.0.1",
