@@ -33,11 +33,11 @@ export const RegisterWrapper = () => {
         }
     };
 
-    return <div className="w-full flex justify-center items-center text-white">
-        <div className="w-96 bg-primary rounded-xl p-4 mt-16">
+    return <div className="w-full h-full bg-accent text-white pt-16">
+        <div className="w-96 bg-primary rounded-xl p-4 mx-auto">
             <p className="font-semibold text-lg">Register Form</p>
             <hr className="my-4" />
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} name="lexart-form" id="lexart-form" className="flex flex-col items-end">
                 <Controller
                     name="name"
                     control={control}
@@ -70,7 +70,7 @@ export const RegisterWrapper = () => {
                     )}
                 />
 
-                <SubmitButton className="float-end mt-12" label="Sign up" />
+                <SubmitButton className="mt-12 w-min whitespace-nowrap" label="Sign up" />
             </form>
         </div>
 

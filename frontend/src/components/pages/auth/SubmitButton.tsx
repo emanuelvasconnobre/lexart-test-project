@@ -1,4 +1,3 @@
-import { Submit } from "@radix-ui/react-form";
 import { AppButton, AppButtonVariantOptions } from "../../toolkit/AppButton";
 
 interface Props {
@@ -15,12 +14,8 @@ export default function SubmitButton({
   ...props
 }: Props) {
   return (
-    <Submit
-      asChild
-    >
-      <AppButton variant={variant} className={`${props.className} ${!isValid ? "cursor-no-drop" : ""}`}>
-        {label}
-      </AppButton>
-    </Submit>
+    <AppButton type="submit" variant={variant} className={`${props.className} ${!isValid ? "cursor-no-drop" : ""}`}>
+      {label}
+    </AppButton>
   );
 }
