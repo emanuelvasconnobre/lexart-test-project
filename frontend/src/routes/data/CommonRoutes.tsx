@@ -49,7 +49,7 @@ export const RoutesList: {
       {
         key: "list-products",
         element: <ListProductsPage />,
-        path: "/folder",
+        path: "/product",
       },
       {
         key: "logging",
