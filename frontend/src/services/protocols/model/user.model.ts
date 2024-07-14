@@ -3,4 +3,5 @@ export class UserModel {
   username!: string;
   name!: string;
   email!: string;
+  profilePicture?: string;
 }

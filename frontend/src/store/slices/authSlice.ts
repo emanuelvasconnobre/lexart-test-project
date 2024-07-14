@@ -5,6 +5,7 @@ type UserStateData = {
   username: string;
   name: string;
   email: string;
+  profilePicture?: string
 };
 
 export interface AuthState {
