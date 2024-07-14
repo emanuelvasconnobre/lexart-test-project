@@ -1,5 +1,5 @@
 export class ProductModel {
-  id!: number;
+  id!: string;
   name!: string;
   brand!: string;
   model!: string;

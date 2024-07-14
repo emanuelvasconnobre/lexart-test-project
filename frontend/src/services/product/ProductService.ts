@@ -51,18 +51,14 @@ export class ProductService {
         params: dto,
       });
 
-      return new ServiceResponse<{ items: ProductModel[]; countPage: number }>(
-        {
-          message: body.message,
-          data: body.data,
-          success: true,
-          level: ToastLevel.SUCCESS,
-        }
-      );
+      return new ServiceResponse<{ items: ProductModel[]; countPage: number }>({
+        message: body.message,
+        data: body.data,
+        success: true,
+        level: ToastLevel.SUCCESS,
+      });
     } catch (error: any) {
-      return catchCallback<{ items: ProductModel[]; countPage: number }>(
-        error
-      );
+      return catchCallback<{ items: ProductModel[]; countPage: number }>(error);
     }
   }
 
@@ -97,13 +93,14 @@ export class ProductService {
         message: body.message,
         data: body.data,
         success: true,
+        level: ToastLevel.SUCCESS,
       });
     } catch (error: any) {
       return catchCallback<ProductModel>(error);
     }
   }
 
-  async delete(id: number) {
+  async delete(id: string) {
     try {
       const { data: body } = await axiosRequest({
         url: `/product/${id}`,
@@ -114,6 +111,7 @@ export class ProductService {
         message: body.message,
         data: body.data,
         success: true,
+        level: ToastLevel.SUCCESS,
       });
     } catch (error: any) {
       return catchCallback(error);

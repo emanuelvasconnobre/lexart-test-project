@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { ProductService } from "../../../services/product";
 import Paginator from "../../toolkit/datatable/pagination/Paginator";
 import RowsCounterPaginator from "../../toolkit/datatable/pagination/RowsCounterPaginator";
+import { useToast } from "../../../hooks/use-toast";
 
 const transformDataCallback = (data: ProductModel) => {
     return {
@@ -28,6 +29,21 @@ export const ListProductsWrapper = () => {
     const [countPage, setCountPage] = useState(1)
     const [isLoading, setIsLoading] = useState(true)
 
+    const deleteHandler = async (id: string) => {
+        const { success, message, level } = await productService.delete(id)
+        useToast(message, { level })
+
+        console.log(success)
+        if (success) {
+            if (products.length > 1) {
+                setProducts(products => products.filter((product) => product.id !== id))
+            } else {
+                setPage((page) => page - 1)
+            }
+        }
+
+    }
+
     const fetchData = async () => {
         const { success, ...response } = await productService.getMany({
             page,
@@ -38,6 +54,8 @@ export const ListProductsWrapper = () => {
         if (success && response.data) {
             setProducts(response.data.items)
             setCountPage(response.data.countPage)
+        } else {
+            useToast(response.message, { level: response.level })
         }
     }
 
@@ -96,7 +114,7 @@ export const ListProductsWrapper = () => {
             dataTransform={transformDataCallback}
             actions={[
                 {
-                    func: () => { },
+                    func: async (value) => { await deleteHandler(value.id) },
                     title: "Delete",
                 },
                 {
