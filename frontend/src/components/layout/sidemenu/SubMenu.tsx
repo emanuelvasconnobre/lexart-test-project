@@ -4,17 +4,18 @@ import chevronIcon from '../../../assets/chevron.svg'
 export type SubMenuProps = {
     title: string;
     children: React.ReactNode;
+    active?: boolean
 }
 
-export const SubMenu: React.FC<SubMenuProps> = ({ title, children }) => {
-    const [isOpen, setIsOpen] = useState(false);
+export const SubMenu: React.FC<SubMenuProps> = ({ title, children, active }) => {
+    const [isOpen, setIsOpen] = useState(active ?? false);
 
     const toggle = () => {
         setIsOpen(!isOpen);
     };
 
     return (
-        <div className="w-full text-white border border-b-1 border-white-light">
+        <div className="w-full text-white border-b border-white">
             <div className={"flex items-center p-3"} onClick={toggle}>
                 <div className="w-full">
                     {title}

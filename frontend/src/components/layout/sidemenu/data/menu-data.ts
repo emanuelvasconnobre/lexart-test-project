@@ -1,5 +1,5 @@
 export type SideMenuData = {
-  link?: string;
+  link: string;
   title: string;
   children?: SideMenuData[];
 };

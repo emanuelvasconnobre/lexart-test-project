@@ -28,7 +28,7 @@ export const Header = () => {
     }
 
     return (
-        <header className="bg-primary p-4 flex justify-between items-center text-white">
+        <header className="bg-primary p-4 flex justify-between items-center text-white border-b border-white">
             <Link to="/" className="text-xl font-bold">
                 Lexart Test
             </Link>
