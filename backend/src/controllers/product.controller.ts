@@ -226,17 +226,21 @@ export class ProductController extends BaseController {
     res: Response,
     next: NextFunction
   ): Promise<void> {
-    const productId = parseInt(req.params.id, 10);
-    const product = await this.productService.getById(productId);
+    try {
+      const productId = parseInt(req.params.id, 10);
+      const product = await this.productService.getById(productId);
 
-    if (product) {
-      res.status(200).json(new ApiResponse(product));
-    } else {
-      next(
-        new NotFoundHttpException({
-          message: `Product with id ${productId} not found`,
-        })
-      );
+      if (product) {
+        res.status(200).json(new ApiResponse(product));
+      } else {
+        next(
+          new NotFoundHttpException({
+            message: `Product with id ${productId} not found`,
+          })
+        );
+      }
+    } catch (error: any) {
+      next(error);
     }
   }
 
