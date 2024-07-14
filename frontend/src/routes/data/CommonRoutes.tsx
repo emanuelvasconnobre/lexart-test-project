@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { HomePage, ListProductsPage, LoggingPage, LoginPage, RegisterPage } from "../../pages";
+import { AddProductsPage, EditProductsPage, HomePage, ListProductsPage, LoggingPage, LoginPage, RegisterPage } from "../../pages";
 import { WellcomePage } from "../../pages/WellcomePage";
 
 export type Route = {
@@ -50,6 +50,16 @@ export const RoutesList: {
         key: "list-products",
         element: <ListProductsPage />,
         path: "/product",
+      },
+      {
+        key: "add-product",
+        element: <AddProductsPage />,
+        path: "/product/add",
+      },
+      {
+        key: "edit-product",
+        element: <EditProductsPage />,
+        path: "/product/edit/:id",
       },
       {
         key: "logging",

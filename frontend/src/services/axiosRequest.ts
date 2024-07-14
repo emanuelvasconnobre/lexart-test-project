@@ -19,7 +19,6 @@ export async function axiosRequest<R>(
       success: response.status >= 200 && response.status < 300,
     };
   } catch (error) {
-    console.log(error)
     if (error instanceof AxiosError) {
       throw new Error("The request returns an error ");
     }

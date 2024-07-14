@@ -7,16 +7,14 @@ import { useLocation } from "react-router-dom";
 
 export const SideMenu: React.FC<PropsWithChildren> = ({ children }) => {
     const location = useLocation();
-    console.log(location.pathname)
 
     const sideMenuHandler = useCallback((menu: SideMenuData) => {
-        const isActive = location.pathname.includes(menu.link)
         if (menu.children && menu.children?.length > 0) {
-            return <SubMenu title={menu.title} active={isActive} key={menu.link}>
+            return <SubMenu title={menu.title} active={location.pathname.includes(menu.link)} key={menu.link}>
                 {menu.children.map(sideMenuHandler)}
             </SubMenu>
         } else {
-            return <MenuItem title={menu.title} link={menu.link} key={menu.link} active={isActive} />
+            return <MenuItem title={menu.title} link={menu.link} key={menu.link} active={location.pathname === menu.link} />
         }
     }, [location])
 

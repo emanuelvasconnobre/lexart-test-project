@@ -6,7 +6,6 @@ import { GlobalLayoutWrapper } from "../components/layout";
 
 export const AppBrowserRouter = () => {
   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated)
-  console.log(isAuthenticated)
 
   return (
     <BrowserRouter>

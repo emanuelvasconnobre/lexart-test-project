@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ProductModel } from "../../../services/protocols/model";
 import { AppButton } from "../../toolkit/AppButton";
 import DataTable from "../../toolkit/datatable/DataTable";
@@ -47,9 +47,11 @@ export const ListProductsWrapper = () => {
 
     return <div className="px-5 py-6">
         <div className="py-3">
-            <AppButton>
-                Adicionar
-            </AppButton>
+            <Link to={"/product/edit/20"}>
+                <AppButton>
+                    Adicionar
+                </AppButton>
+            </Link>
         </div>
         <DataTable<ProductModel>
             columns={[
@@ -98,11 +100,7 @@ export const ListProductsWrapper = () => {
                     title: "Delete",
                 },
                 {
-                    func: () => { },
-                    title: "View",
-                },
-                {
-                    func: async (value) => {
+                    func: (value) => {
                         navigate(`/product/edit/${value.id}`)
                     },
                     title: "Edit",

@@ -24,7 +24,7 @@ const catchCallback = <T = any>(error: any) => {
 };
 
 export class ProductService {
-  async getById(id: number) {
+  async getById(id: string) {
     try {
       const { data: body } = await axiosRequest<ProductModel>({
         url: `/product/${id}`,
@@ -85,7 +85,7 @@ export class ProductService {
     }
   }
 
-  async update(id: number, dto: Partial<UpdateProductDto>) {
+  async update(id: string, dto: Partial<UpdateProductDto>) {
     try {
       const { data: body } = await axiosRequest<ProductModel>({
         url: `/product/${id}`,
