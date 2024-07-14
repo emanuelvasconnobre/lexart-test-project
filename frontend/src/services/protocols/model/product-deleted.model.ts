@@ -8,7 +8,7 @@ export class ProductDeletedModel {
   description!: string;
   deletedAt!: Date;
   createdAt!: Date;
-  modifiedAt!: Date;
+  updatedAt!: Date;
   username!: string;
   userId!: string;
 }

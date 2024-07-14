@@ -12,11 +12,11 @@ export const SideMenu: React.FC<PropsWithChildren> = ({ children }) => {
     const sideMenuHandler = useCallback((menu: SideMenuData) => {
         const isActive = location.pathname.includes(menu.link)
         if (menu.children && menu.children?.length > 0) {
-            return <SubMenu title={menu.title} active={isActive}>
+            return <SubMenu title={menu.title} active={isActive} key={menu.link}>
                 {menu.children.map(sideMenuHandler)}
             </SubMenu>
         } else {
-            return <MenuItem title={menu.title} link={menu.link} active={isActive} />
+            return <MenuItem title={menu.title} link={menu.link} key={menu.link} active={isActive} />
         }
     }, [location])
 
@@ -26,7 +26,7 @@ export const SideMenu: React.FC<PropsWithChildren> = ({ children }) => {
             <div className="w-64 bg-primary border-r border-white">
                 {sideMenuList.map(sideMenuHandler)}
             </div>
-            <div className="w-full">
+            <div className="w-full h-full overflow-auto">
                 {children}
             </div>
         </div>

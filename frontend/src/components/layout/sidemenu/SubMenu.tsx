@@ -16,7 +16,7 @@ export const SubMenu: React.FC<SubMenuProps> = ({ title, children, active }) => 
 
     return (
         <div className="w-full text-white border-b border-white">
-            <div className={"flex items-center p-3"} onClick={toggle}>
+            <div className={"flex items-center p-3 hover:bg-primary-light"} onClick={toggle}>
                 <div className="w-full">
                     {title}
                 </div>

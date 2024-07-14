@@ -6,5 +6,5 @@ export class ProductModel {
   price!: number;
   description!: string;
   createdAt!: Date;
-  modifiedAt!: Date;
+  updatedAt!: Date;
 }
