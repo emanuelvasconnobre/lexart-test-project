@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, ReactNode } from "react";
 
-type VariantOptions = {
+export type AppButtonVariantOptions = {
     primary: string;
     secondary: string;
     borded: string;
@@ -9,7 +9,7 @@ type VariantOptions = {
 type Props = ButtonHTMLAttributes<HTMLElement> & {
     children: ReactNode | string;
     className?: string;
-    variant?: keyof VariantOptions;
+    variant?: keyof AppButtonVariantOptions;
 };
 
 export function AppButton({ variant = "secondary", className = "", children, ...props }: Props) {
@@ -20,7 +20,7 @@ export function AppButton({ variant = "secondary", className = "", children, ...
     const bordedClassName =
         "text-primary hover:text-white active:text-white border border-primary active:bg-primary px-3 py-2 hover:bg-secondary-light active:bg-secondary-dark";
 
-    const variantOptions: VariantOptions = {
+    const variantOptions: AppButtonVariantOptions = {
         primary: primaryClassName,
         secondary: secondaryClassName,
         borded: bordedClassName,
