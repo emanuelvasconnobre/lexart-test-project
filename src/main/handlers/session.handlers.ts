@@ -4,6 +4,9 @@ import pgSession from "connect-pg-simple";
 import { sequelize } from "@modules/config/sequelize";
 
 export const sessionHandler = (app: Application) => {
+  app.disable("X-Powered-By");
+  app.set("trust proxy", 1);
+  
   const pgSessionInstance = pgSession(session);
 
   const isProduction = process.env.NODE_ENV === "prod";
@@ -11,7 +14,6 @@ export const sessionHandler = (app: Application) => {
 
   if (isProduction) {
     cookiesConfig = {
-      httpOnly: true,
       secure: true,
       sameSite: "none",
       maxAge: 24 * 60 * 60 * 1000,
