@@ -120,7 +120,6 @@ export class AuthController extends BaseController {
    *             schema:
    *               $ref: '#/definitions/ApiResponse'
    */
-
   private async login(
     req: Request,
     res: Response,

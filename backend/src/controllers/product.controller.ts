@@ -160,9 +160,15 @@ export class ProductController extends BaseController {
    *                   type: string
    *                   example: Success
    *                 data:
-   *                   type: array
-   *                   items:
-   *                     $ref: '#/components/schemas/Product'
+   *                   type: object
+   *                   properties:
+   *                     items:
+   *                       type: array
+   *                       items:
+   *                         $ref: '#/components/schemas/Product'
+   *                     countPage:
+   *                       type: integer
+   *                       example: 5
    */
   private async getAllProducts(
     req: Request,

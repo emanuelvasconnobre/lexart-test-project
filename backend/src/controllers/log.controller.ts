@@ -54,9 +54,15 @@ export class LogController extends BaseController {
    *                   type: string
    *                   example: Success
    *                 data:
-   *                   type: array
-   *                   items:
-   *                     $ref: '#/components/schemas/ProductDeleted'
+   *                   type: object
+   *                   properties:
+   *                     items:
+   *                       type: array
+   *                       items:
+   *                         $ref: '#/components/schemas/ProductDeleted'
+   *                     countPage:
+   *                       type: integer
+   *                       example: 5
    */
   private async getMany(
     req: Request,
