@@ -133,7 +133,7 @@ export const ListProductsWrapper = () => {
         <div className="px-5 py-6">
             <div className="flex justify-between items-center">
                 <p className="text-xl font-bold text-secondary-light mb-3">
-                    Logging Page
+                    Product Page
                 </p>
                 <div className="py-3 flex gap-4">
                     <Link to={"/product/add"}>
