@@ -8,17 +8,16 @@ import { logger } from "@modules/config/winston";
 
 export class UpstreamController extends BaseController {
   private productService = new ProductService();
-  private routeName = "upstream";
 
   constructor() {
     super();
     this.router.get(
-      `/${this.routeName}/`,
+      `/upstream`,
       isAuthenticatedMiddleware,
       this.uploadTestProducts.bind(this)
     );
-    this.router.delete(
-      `/${this.routeName}/`,
+    this.router.get(
+      `/destroy`,
       isAuthenticatedMiddleware,
       this.deleteAllProducts.bind(this)
     );
@@ -66,7 +65,17 @@ export class UpstreamController extends BaseController {
     res.setHeader("Cache-Control", "no-cache");
     res.setHeader("Connection", "keep-alive");
 
+    const sendEvent = (event: string, data: any) => {
+      res.write(`event: ${event}\n`);
+      res.write(`data: ${JSON.stringify(data)}\n\n`);
+    };
+
     try {
+      sendEvent("message", {
+        message: "Starting process",
+        progress: 0,
+      });
+
       const totalProducts = await this.productService.count();
       const batchSize = 10;
       let deletedProducts = 0;
@@ -81,28 +90,23 @@ export class UpstreamController extends BaseController {
 
         const progress = Math.floor((deletedProducts / totalProducts) * 100);
 
-        res.write(
-          `data: ${JSON.stringify({
-            event: "progress",
-            data: { progress },
-          })}\n\n`
-        );
+        sendEvent("message", {
+          message: "Processing...",
+          progress,
+        });
       }
 
-      res.write(
-        `data: ${JSON.stringify({
-          event: "complete",
-          data: { message: "All products deleted." },
-        })}\n\n`
-      );
+      sendEvent("message", {
+        message: "All products deleted.",
+        progress: 100,
+      });
       res.end();
     } catch (error) {
-      res.write(
-        `data: ${JSON.stringify({
-          event: "error",
-          data: { message: "An error occurred while deleting products." },
-        })}\n\n`
-      );
+      logger.error(`Event Error: ${error}`);
+      sendEvent("error", {
+        message: "An error occurred while deleting products.",
+        progress: 100,
+      });
       res.end();
     }
   }
@@ -149,7 +153,17 @@ export class UpstreamController extends BaseController {
     res.setHeader("Cache-Control", "no-cache");
     res.setHeader("Connection", "keep-alive");
 
+    const sendEvent = (event: string, data: any) => {
+      res.write(`event: ${event}\n`);
+      res.write(`data: ${JSON.stringify(data)}\n\n`);
+    };
+
     try {
+      sendEvent("message", {
+        message: "Starting process",
+        progress: 0,
+      });
+
       const filePath = path.join(
         __dirname,
         "../assets",
@@ -157,13 +171,11 @@ export class UpstreamController extends BaseController {
       );
 
       readFile(filePath, "utf8", async (err, data) => {
-        logger.error(err);
         if (err) {
-          res.write(
-            `event: error\ndata: ${JSON.stringify({
-              message: "Error reading file",
-            })}\n\n`
-          );
+          logger.error(`Event Error: ${err}`);
+          sendEvent("error", {
+            message: "Error reading file",
+          });
           res.end();
           return;
         }
@@ -178,25 +190,25 @@ export class UpstreamController extends BaseController {
           this.productService.createMany(batch);
           processedItems += batch.length;
           const progress = Math.floor((processedItems / totalItems) * 100);
-          res.write(
-            `event: progress\ndata: ${JSON.stringify({ progress })}\n\n`
-          );
+
+          sendEvent("message", {
+            message: "Processing...",
+            progress,
+          });
         }
 
-        res.write(
-          `event: complete\ndata: ${JSON.stringify({
-            message: "All data processed",
-          })}\n\n`
-        );
+        sendEvent("message", {
+          message: "All data processed",
+          progress: 100,
+        });
         res.end();
       });
     } catch (error) {
-      res.write(
-        `data: ${JSON.stringify({
-          event: "error",
-          data: { message: "An error occured while inserting products" },
-        })}\n\n`
-      );
+      logger.error(`Event Error: ${error}`);
+      sendEvent("error", {
+        message: "An error occured while inserting products",
+        progress: 100,
+      });
       res.end();
     }
   }
