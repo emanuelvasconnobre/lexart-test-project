@@ -1,4 +1,6 @@
+import { EventSourceService } from "../../utils/EventSourceService";
 import { ToastLevel } from "../../utils/typing/toast-level";
+import { Api } from "../api";
 import { axiosRequest } from "../axiosRequest";
 import { ProductModel } from "../protocols/model";
 import { ServiceResponse } from "../protocols/service-response";
@@ -113,6 +115,38 @@ export class ProductService {
         success: true,
         level: ToastLevel.SUCCESS,
       });
+    } catch (error: any) {
+      return catchCallback(error);
+    }
+  }
+
+  async deleteAll() {
+    try {
+      const { data: body } = await axiosRequest({
+        url: `/upstream`,
+        method: "DELETE",
+      });
+
+      return new ServiceResponse({
+        message: body.message,
+        data: body.data,
+        success: true,
+        level: ToastLevel.SUCCESS,
+      });
+    } catch (error: any) {
+      return catchCallback(error);
+    }
+  }
+
+  async uploadTestProducts(handler: (event: MessageEvent) => void) {
+    try {
+      const eventSourceService = new EventSourceService(
+        `${Api.defaults.baseURL}/upstream`
+      );
+
+      eventSourceService.connect(handler);
+
+      return eventSourceService;
     } catch (error: any) {
       return catchCallback(error);
     }
