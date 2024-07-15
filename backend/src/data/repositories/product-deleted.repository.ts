@@ -4,6 +4,18 @@ import { UnexpectedException } from "@modules/exceptions/app-exceptions";
 import { NullishPropertiesOf } from "sequelize/types/utils";
 
 export class ProductDeletedRepository {
+  async count() {
+    try {
+      const count = await ProductDeleted.count();
+      return count;
+    } catch (error: any) {
+      throw new UnexpectedException({
+        message: `Error counting all products`,
+        traceback: error.message,
+      });
+    }
+  }
+
   async getMany(take: number, skip: number) {
     try {
       const productsDeleted = await ProductDeleted.findAll({

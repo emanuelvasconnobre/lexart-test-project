@@ -19,7 +19,7 @@ export function exceptionMiddleware(
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json(error.serialize());
   } else {
-    logger.error(error);
+    logger.error(`Unexpected Error: ${error}`);
     return res.status(500).json({
       error: {
         message: "Internal Error Handled",

@@ -1,5 +1,6 @@
+import { SideMenu } from "../components/layout/sidemenu/SideMenu";
 import { ListProductsWrapper } from "../components/pages";
 
 export const ListProductsPage = () => {
-    return <ListProductsWrapper />;
+    return <SideMenu><ListProductsWrapper /></SideMenu>;
 };

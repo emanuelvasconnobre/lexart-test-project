@@ -5,6 +5,10 @@ import { ProductDeletedModel } from "@modules/domain/models";
 export class LogService {
   repository = new ProductDeletedRepository();
 
+  count() {
+    return this.repository.count();
+  }
+
   getMany(page: number, countPerPage: number) {
     const take = +countPerPage;
     const skip = page == 1 ? 0 : (page - 1) * countPerPage;

@@ -1,7 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import { BaseController } from "./protocols/base-controller";
 import { LogService, ProductService } from "@modules/services";
-import { CreateProductDto, UpdateProductDto } from "@modules/validation/product";
+import {
+  CreateProductDto,
+  UpdateProductDto,
+} from "@modules/validation/product";
 import { NotFoundHttpException } from "@modules/exceptions/http-exceptions";
 import { validateDto } from "@modules/utils";
 import { ApiResponse } from "./protocols/api-response";
@@ -157,9 +160,15 @@ export class ProductController extends BaseController {
    *                   type: string
    *                   example: Success
    *                 data:
-   *                   type: array
-   *                   items:
-   *                     $ref: '#/components/schemas/Product'
+   *                   type: object
+   *                   properties:
+   *                     items:
+   *                       type: array
+   *                       items:
+   *                         $ref: '#/components/schemas/Product'
+   *                     countPage:
+   *                       type: integer
+   *                       example: 5
    */
   private async getAllProducts(
     req: Request,
@@ -171,7 +180,10 @@ export class ProductController extends BaseController {
 
     try {
       const products = await this.productService.getMany(page, countPerPage);
-      res.status(200).json(new ApiResponse(products));
+      const countElements = await this.productService.count();
+      const countPage = Math.ceil(countElements / countPerPage);
+
+      res.status(200).json(new ApiResponse({ items: products, countPage }));
     } catch (error: any) {
       next(error);
     }
@@ -220,17 +232,21 @@ export class ProductController extends BaseController {
     res: Response,
     next: NextFunction
   ): Promise<void> {
-    const productId = parseInt(req.params.id, 10);
-    const product = await this.productService.getById(productId);
+    try {
+      const productId = parseInt(req.params.id, 10);
+      const product = await this.productService.getById(productId);
 
-    if (product) {
-      res.status(200).json(new ApiResponse(product));
-    } else {
-      next(
-        new NotFoundHttpException({
-          message: `Product with id ${productId} not found`,
-        })
-      );
+      if (product) {
+        res.status(200).json(new ApiResponse(product));
+      } else {
+        next(
+          new NotFoundHttpException({
+            message: `Product with id ${productId} not found`,
+          })
+        );
+      }
+    } catch (error: any) {
+      next(error);
     }
   }
 

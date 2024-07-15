@@ -54,9 +54,15 @@ export class LogController extends BaseController {
    *                   type: string
    *                   example: Success
    *                 data:
-   *                   type: array
-   *                   items:
-   *                     $ref: '#/components/schemas/ProductDeleted'
+   *                   type: object
+   *                   properties:
+   *                     items:
+   *                       type: array
+   *                       items:
+   *                         $ref: '#/components/schemas/ProductDeleted'
+   *                     countPage:
+   *                       type: integer
+   *                       example: 5
    */
   private async getMany(
     req: Request,
@@ -68,7 +74,10 @@ export class LogController extends BaseController {
 
     try {
       const logs = await this.service.getMany(page, countPerPage);
-      res.status(200).json(new ApiResponse(logs));
+      const countElements = await this.service.count();
+      const countPage = Math.ceil(countElements / countPerPage);
+
+      res.status(200).json(new ApiResponse({ items: logs, countPage }));
     } catch (error: any) {
       next(error);
     }
