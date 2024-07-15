@@ -1,0 +1,352 @@
+[
+    {
+        "name": "iPhone 13 1",
+        "brand": "Apple",
+        "model": "A2483-1",
+        "price": 799.99,
+        "description": "The latest iPhone with A15 Bionic chip and 5G technology."
+    },
+    {
+        "name": "Samsung Galaxy S21 2",
+        "brand": "Samsung",
+        "model": "SM-G991B-2",
+        "price": 706.99,
+        "description": "Samsung's flagship smartphone with Exynos 2100 processor and 8K video recording."
+    },
+    {
+        "name": "Google Pixel 6 3",
+        "brand": "Google",
+        "model": "G9S9B-3",
+        "price": 611.99,
+        "description": "Google's latest smartphone featuring the Tensor processor and advanced camera features."
+    },
+    {
+        "name": "iPhone 13 4",
+        "brand": "Apple",
+        "model": "A2483-4",
+        "price": 823.99,
+        "description": "The latest iPhone with A15 Bionic chip and 5G technology."
+    },
+    {
+        "name": "Samsung Galaxy S21 5",
+        "brand": "Samsung",
+        "model": "SM-G991B-5",
+        "price": 727.99,
+        "description": "Samsung's flagship smartphone with Exynos 2100 processor and 8K video recording."
+    },
+    {
+        "name": "Google Pixel 6 6",
+        "brand": "Google",
+        "model": "G9S9B-6",
+        "price": 629.99,
+        "description": "Google's latest smartphone featuring the Tensor processor and advanced camera features."
+    },
+    {
+        "name": "iPhone 13 7",
+        "brand": "Apple",
+        "model": "A2483-7",
+        "price": 847.99,
+        "description": "The latest iPhone with A15 Bionic chip and 5G technology."
+    },
+    {
+        "name": "Samsung Galaxy S21 8",
+        "brand": "Samsung",
+        "model": "SM-G991B-8",
+        "price": 748.99,
+        "description": "Samsung's flagship smartphone with Exynos 2100 processor and 8K video recording."
+    },
+    {
+        "name": "Google Pixel 6 9",
+        "brand": "Google",
+        "model": "G9S9B-9",
+        "price": 647.99,
+        "description": "Google's latest smartphone featuring the Tensor processor and advanced camera features."
+    },
+    {
+        "name": "iPhone 13 10",
+        "brand": "Apple",
+        "model": "A2483-10",
+        "price": 871.99,
+        "description": "The latest iPhone with A15 Bionic chip and 5G technology."
+    },
+    {
+        "name": "Samsung Galaxy S21 11",
+        "brand": "Samsung",
+        "model": "SM-G991B-11",
+        "price": 769.99,
+        "description": "Samsung's flagship smartphone with Exynos 2100 processor and 8K video recording."
+    },
+    {
+        "name": "Google Pixel 6 12",
+        "brand": "Google",
+        "model": "G9S9B-12",
+        "price": 665.99,
+        "description": "Google's latest smartphone featuring the Tensor processor and advanced camera features."
+    },
+    {
+        "name": "iPhone 13 13",
+        "brand": "Apple",
+        "model": "A2483-13",
+        "price": 895.99,
+        "description": "The latest iPhone with A15 Bionic chip and 5G technology."
+    },
+    {
+        "name": "Samsung Galaxy S21 14",
+        "brand": "Samsung",
+        "model": "SM-G991B-14",
+        "price": 790.99,
+        "description": "Samsung's flagship smartphone with Exynos 2100 processor and 8K video recording."
+    },
+    {
+        "name": "Google Pixel 6 15",
+        "brand": "Google",
+        "model": "G9S9B-15",
+        "price": 683.99,
+        "description": "Google's latest smartphone featuring the Tensor processor and advanced camera features."
+    },
+    {
+        "name": "iPhone 13 16",
+        "brand": "Apple",
+        "model": "A2483-16",
+        "price": 919.99,
+        "description": "The latest iPhone with A15 Bionic chip and 5G technology."
+    },
+    {
+        "name": "Samsung Galaxy S21 17",
+        "brand": "Samsung",
+        "model": "SM-G991B-17",
+        "price": 811.99,
+        "description": "Samsung's flagship smartphone with Exynos 2100 processor and 8K video recording."
+    },
+    {
+        "name": "Google Pixel 6 18",
+        "brand": "Google",
+        "model": "G9S9B-18",
+        "price": 701.99,
+        "description": "Google's latest smartphone featuring the Tensor processor and advanced camera features."
+    },
+    {
+        "name": "iPhone 13 19",
+        "brand": "Apple",
+        "model": "A2483-19",
+        "price": 943.99,
+        "description": "The latest iPhone with A15 Bionic chip and 5G technology."
+    },
+    {
+        "name": "Samsung Galaxy S21 20",
+        "brand": "Samsung",
+        "model": "SM-G991B-20",
+        "price": 832.99,
+        "description": "Samsung's flagship smartphone with Exynos 2100 processor and 8K video recording."
+    },
+    {
+        "name": "Google Pixel 6 21",
+        "brand": "Google",
+        "model": "G9S9B-21",
+        "price": 719.99,
+        "description": "Google's latest smartphone featuring the Tensor processor and advanced camera features."
+    },
+    {
+        "name": "iPhone 13 22",
+        "brand": "Apple",
+        "model": "A2483-22",
+        "price": 967.99,
+        "description": "The latest iPhone with A15 Bionic chip and 5G technology."
+    },
+    {
+        "name": "Samsung Galaxy S21 23",
+        "brand": "Samsung",
+        "model": "SM-G991B-23",
+        "price": 853.99,
+        "description": "Samsung's flagship smartphone with Exynos 2100 processor and 8K video recording."
+    },
+    {
+        "name": "Google Pixel 6 24",
+        "brand": "Google",
+        "model": "G9S9B-24",
+        "price": 737.99,
+        "description": "Google's latest smartphone featuring the Tensor processor and advanced camera features."
+    },
+    {
+        "name": "iPhone 13 25",
+        "brand": "Apple",
+        "model": "A2483-25",
+        "price": 991.99,
+        "description": "The latest iPhone with A15 Bionic chip and 5G technology."
+    },
+    {
+        "name": "Samsung Galaxy S21 26",
+        "brand": "Samsung",
+        "model": "SM-G991B-26",
+        "price": 874.99,
+        "description": "Samsung's flagship smartphone with Exynos 2100 processor and 8K video recording."
+    },
+    {
+        "name": "Google Pixel 6 27",
+        "brand": "Google",
+        "model": "G9S9B-27",
+        "price": 755.99,
+        "description": "Google's latest smartphone featuring the Tensor processor and advanced camera features."
+    },
+    {
+        "name": "iPhone 13 28",
+        "brand": "Apple",
+        "model": "A2483-28",
+        "price": 1015.99,
+        "description": "The latest iPhone with A15 Bionic chip and 5G technology."
+    },
+    {
+        "name": "Samsung Galaxy S21 29",
+        "brand": "Samsung",
+        "model": "SM-G991B-29",
+        "price": 895.99,
+        "description": "Samsung's flagship smartphone with Exynos 2100 processor and 8K video recording."
+    },
+    {
+        "name": "Google Pixel 6 30",
+        "brand": "Google",
+        "model": "G9S9B-30",
+        "price": 773.99,
+        "description": "Google's latest smartphone featuring the Tensor processor and advanced camera features."
+    },
+    {
+        "name": "iPhone 13 31",
+        "brand": "Apple",
+        "model": "A2483-31",
+        "price": 1039.99,
+        "description": "The latest iPhone with A15 Bionic chip and 5G technology."
+    },
+    {
+        "name": "Samsung Galaxy S21 32",
+        "brand": "Samsung",
+        "model": "SM-G991B-32",
+        "price": 916.99,
+        "description": "Samsung's flagship smartphone with Exynos 2100 processor and 8K video recording."
+    },
+    {
+        "name": "Google Pixel 6 33",
+        "brand": "Google",
+        "model": "G9S9B-33",
+        "price": 791.99,
+        "description": "Google's latest smartphone featuring the Tensor processor and advanced camera features."
+    },
+    {
+        "name": "iPhone 13 34",
+        "brand": "Apple",
+        "model": "A2483-34",
+        "price": 1063.99,
+        "description": "The latest iPhone with A15 Bionic chip and 5G technology."
+    },
+    {
+        "name": "Samsung Galaxy S21 35",
+        "brand": "Samsung",
+        "model": "SM-G991B-35",
+        "price": 937.99,
+        "description": "Samsung's flagship smartphone with Exynos 2100 processor and 8K video recording."
+    },
+    {
+        "name": "Google Pixel 6 36",
+        "brand": "Google",
+        "model": "G9S9B-36",
+        "price": 809.99,
+        "description": "Google's latest smartphone featuring the Tensor processor and advanced camera features."
+    },
+    {
+        "name": "iPhone 13 37",
+        "brand": "Apple",
+        "model": "A2483-37",
+        "price": 1087.99,
+        "description": "The latest iPhone with A15 Bionic chip and 5G technology."
+    },
+    {
+        "name": "Samsung Galaxy S21 38",
+        "brand": "Samsung",
+        "model": "SM-G991B-38",
+        "price": 958.99,
+        "description": "Samsung's flagship smartphone with Exynos 2100 processor and 8K video recording."
+    },
+    {
+        "name": "Google Pixel 6 39",
+        "brand": "Google",
+        "model": "G9S9B-39",
+        "price": 827.99,
+        "description": "Google's latest smartphone featuring the Tensor processor and advanced camera features."
+    },
+    {
+        "name": "iPhone 13 40",
+        "brand": "Apple",
+        "model": "A2483-40",
+        "price": 1111.99,
+        "description": "The latest iPhone with A15 Bionic chip and 5G technology."
+    },
+    {
+        "name": "Samsung Galaxy S21 41",
+        "brand": "Samsung",
+        "model": "SM-G991B-41",
+        "price": 979.99,
+        "description": "Samsung's flagship smartphone with Exynos 2100 processor and 8K video recording."
+    },
+    {
+        "name": "Google Pixel 6 42",
+        "brand": "Google",
+        "model": "G9S9B-42",
+        "price": 845.99,
+        "description": "Google's latest smartphone featuring the Tensor processor and advanced camera features."
+    },
+    {
+        "name": "iPhone 13 43",
+        "brand": "Apple",
+        "model": "A2483-43",
+        "price": 1135.99,
+        "description": "The latest iPhone with A15 Bionic chip and 5G technology."
+    },
+    {
+        "name": "Samsung Galaxy S21 44",
+        "brand": "Samsung",
+        "model": "SM-G991B-44",
+        "price": 1000.99,
+        "description": "Samsung's flagship smartphone with Exynos 2100 processor and 8K video recording."
+    },
+    {
+        "name": "Google Pixel 6 45",
+        "brand": "Google",
+        "model": "G9S9B-45",
+        "price": 863.99,
+        "description": "Google's latest smartphone featuring the Tensor processor and advanced camera features."
+    },
+    {
+        "name": "iPhone 13 46",
+        "brand": "Apple",
+        "model": "A2483-46",
+        "price": 1159.99,
+        "description": "The latest iPhone with A15 Bionic chip and 5G technology."
+    },
+    {
+        "name": "Samsung Galaxy S21 47",
+        "brand": "Samsung",
+        "model": "SM-G991B-47",
+        "price": 1021.99,
+        "description": "Samsung's flagship smartphone with Exynos 2100 processor and 8K video recording."
+    },
+    {
+        "name": "Google Pixel 6 48",
+        "brand": "Google",
+        "model": "G9S9B-48",
+        "price": 881.99,
+        "description": "Google's latest smartphone featuring the Tensor processor and advanced camera features."
+    },
+    {
+        "name": "iPhone 13 49",
+        "brand": "Apple",
+        "model": "A2483-49",
+        "price": 1183.99,
+        "description": "The latest iPhone with A15 Bionic chip and 5G technology."
+    },
+    {
+        "name": "Samsung Galaxy S21 50",
+        "brand": "Samsung",
+        "model": "SM-G991B-50",
+        "price": 1042.99,
+        "description": "Samsung's flagship smartphone with Exynos 2100 processor and 8K video recording."
+    }
+]
