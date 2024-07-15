@@ -11,7 +11,7 @@ export const sessionHandler = (app: Application) => {
       store: new pgSessionInstance({
         conObject: {
           ...sequelize.options,
-          user: sequelize.options.username,
+          connectionString: process.env.POSTGRES_URL,
         },
         createTableIfMissing: true,
         tableName: "session",
