@@ -11,10 +11,9 @@ export const sessionHandler = (app: Application) => {
 
   if (isProduction) {
     cookiesConfig = {
-      domain: "*",
       maxAge: 24 * 60 * 60 * 1000,
       secure: true,
-      httpOnly: true,
+      httpOnly: false,
       sameSite: "none",
     };
   } else {
