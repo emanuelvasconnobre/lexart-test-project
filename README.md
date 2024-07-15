@@ -13,24 +13,24 @@
 
 ### Frontend (React no Vercel):
 
-- [ ] Criar formulário para registro e login.
-- [ ] Criar uma interface de usuário para mostrar os produtos e permitir que o usuário faça operações CRUD disponíveis apenas para usuários que fizeram login.
-- [ ] Implementar rotas para navegar entre as diferentes visualizações (lista de produtos, adicionar produto, editar produto, logs).
-- [ ] Utilizar serviços para consumir a API RESTful criada no backend.
-- [ ] Ao clicar em “Carregar produtos de teste” deve adicionar 50 produtos.
-- [ ] Ao clicar em “Eliminar todos os produtos”, executar o procedimento de eliminação e mostrar uma barra de progresso de 0 a 100% que se atualize em tempo real.
-- [ ] Mostrar uma lista dos produtos eliminados em uma tela chamada logs dentro do site.
+- [x] Criar formulário para registro e login.
+- [x] Criar uma interface de usuário para mostrar os produtos e permitir que o usuário faça operações CRUD disponíveis apenas para usuários que fizeram login.
+- [x] Implementar rotas para navegar entre as diferentes visualizações (lista de produtos, adicionar produto, editar produto, logs).
+- [x] Utilizar serviços para consumir a API RESTful criada no backend.
+- [x] Ao clicar em “Carregar produtos de teste” deve adicionar 50 produtos.
+- [x] Ao clicar em “Eliminar todos os produtos”, executar o procedimento de eliminação e mostrar uma barra de progresso de 0 a 100% que se atualize em tempo real.
+- [x] Mostrar uma lista dos produtos eliminados em uma tela chamada logs dentro do site.
 
 ### Requerido
 
-- [ ] A aplicação deve ter uma página para login e registro. (Prover um usuário de teste)
-- [ ] A aplicação deve ter uma página principal onde todos os produtos disponíveis e seus detalhes são mostrados; o acesso a esta página é apenas possível com o login do usuário.
-- [ ] Deve ser possível adicionar novos produtos.
-- [ ] Deve ser possível editar os produtos existentes.
-- [ ] Deve ser possível excluir produtos.
+- [x] A aplicação deve ter uma página para login e registro. (Prover um usuário de teste)
+- [x] A aplicação deve ter uma página principal onde todos os produtos disponíveis e seus detalhes são mostrados; o acesso a esta página é apenas possível com o login do usuário.
+- [x] Deve ser possível adicionar novos produtos.
+- [x] Deve ser possível editar os produtos existentes.
+- [x] Deve ser possível excluir produtos.
 - [ ] Adicionar funcionalidades de pesquisa e filtragem de produtos.
-- [ ] Deve ser possível listar os produtos das APIs externas.
-- [ ] Deve ter um botão para poder carregar 50 produtos.
-- [ ] Deve ter um botão para poder eliminar todos os produtos do site.
-- [ ] Deve ter uma barra de progresso mostrando o estado da eliminação de 0 a 100%.
-- [ ] Deve ter uma tela chamada logs onde se pode ver os produtos que foram eliminados.
+- [x] Deve ser possível listar os produtos das APIs externas.
+- [x] Deve ter um botão para poder carregar 50 produtos.
+- [x] Deve ter um botão para poder eliminar todos os produtos do site.
+- [x] Deve ter uma barra de progresso mostrando o estado da eliminação de 0 a 100%.
+- [x] Deve ter uma tela chamada logs onde se pode ver os produtos que foram eliminados.
