@@ -13,7 +13,6 @@ export const sessionHandler = (app: Application) => {
     cookiesConfig = {
       maxAge: 24 * 60 * 60 * 1000,
       secure: true,
-      httpOnly: true,
       sameSite: "none",
     };
   } else {
