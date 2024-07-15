@@ -130,7 +130,7 @@ export class AuthController extends BaseController {
     try {
       await validateDto(LoginDto, body);
       const user = await this.authService.login(body);
-      req.session?.save((err: any) => {
+      req.session.save((err: any) => {
         if (err) {
           throw new InternalServerHttpException({
             message: "Could not log in.",

@@ -11,10 +11,10 @@ export const sessionHandler = (app: Application) => {
 
   if (isProduction) {
     cookiesConfig = {
-      maxAge: 24 * 60 * 60 * 1000,
+      httpOnly: true,
       secure: true,
-      httpOnly: false,
       sameSite: "none",
+      maxAge: 24 * 60 * 60 * 1000,
     };
   } else {
     cookiesConfig = {
@@ -37,7 +37,7 @@ export const sessionHandler = (app: Application) => {
       }),
       secret: process.env["SECRET"] || "secret",
       resave: false,
-      saveUninitialized: false,
+      saveUninitialized: true,
       cookie: cookiesConfig,
     })
   );
