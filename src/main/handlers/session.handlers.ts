@@ -6,6 +6,25 @@ import { sequelize } from "@modules/config/sequelize";
 export const sessionHandler = (app: Application) => {
   const pgSessionInstance = pgSession(session);
 
+  const isProduction = process.env.NODE_ENV === "prod";
+  let cookiesConfig: session.CookieOptions;
+
+  if (isProduction) {
+    cookiesConfig = {
+      maxAge: 24 * 60 * 60 * 1000,
+      secure: true,
+      httpOnly: true,
+      sameSite: "none",
+    };
+  } else {
+    cookiesConfig = {
+      maxAge: 24 * 60 * 60 * 1000,
+      secure: false,
+      httpOnly: true,
+      sameSite: "strict",
+    };
+  }
+
   app.use(
     session({
       store: new pgSessionInstance({
@@ -19,12 +38,7 @@ export const sessionHandler = (app: Application) => {
       secret: process.env["SECRET"] || "secret",
       resave: false,
       saveUninitialized: false,
-      cookie: {
-        maxAge: 24 * 60 * 60 * 1000,
-        secure: false,
-        httpOnly: true,
-        sameSite: "none"
-      },
+      cookie: cookiesConfig,
     })
   );
 };
