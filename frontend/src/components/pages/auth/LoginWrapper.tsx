@@ -62,7 +62,7 @@ export const LoginWrapper = () => {
                     name="email"
                     control={control}
                     render={({ field }) => (
-                        <TextFormControl {...field} type="text" errorMessage={errors.email?.message} placeholder="Email" label="Email" />
+                        <TextFormControl {...field} type="text" className="text-white" errorMessage={errors.email?.message} placeholder="Email" label="Email" />
                     )}
                 />
 
@@ -70,7 +70,7 @@ export const LoginWrapper = () => {
                     name="password"
                     control={control}
                     render={({ field }) => (
-                        <TextFormControl {...field} type="text" errorMessage={errors.password?.message} placeholder="Password" label="Password" />
+                        <TextFormControl {...field} type="password" className="text-white" errorMessage={errors.password?.message} placeholder="Password" label="Password" />
                     )}
                 />
 

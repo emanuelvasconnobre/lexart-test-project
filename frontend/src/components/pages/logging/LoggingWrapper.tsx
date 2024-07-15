@@ -88,7 +88,7 @@ export const LoggingWrapper = () => {
                     },
                     {
                         keyName: "deletedAt",
-                        node: <>Updated at</>,
+                        node: <>Deleted at</>,
                     },
                 ]}
                 data={products}

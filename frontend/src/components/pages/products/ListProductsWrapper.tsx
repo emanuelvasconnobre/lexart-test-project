@@ -33,6 +33,11 @@ export const ListProductsWrapper = () => {
     const [countPage, setCountPage] = useState(1)
     const [isLoading, setIsLoading] = useState(true)
     const [progress, setProgress] = useState<number>(100);
+    const [events, setEvents] = useState<{ message: string, progress: number }[]>([])
+
+    useEffect(() => {
+        events.map((event) => setProgress(event.progress))
+    }, [events])
 
     const deleteAllProducts = async () => {
         const eventSourceService = new EventSourceService(
@@ -46,9 +51,12 @@ export const ListProductsWrapper = () => {
                 progress: number
             }
 
-            setProgress(body.progress)
+            setEvents((previousData) => [...previousData, body])
             if (body.progress === 100) {
                 useToast(body.message, { level: ToastLevel.SUCCESS })
+                setPage(1)
+                setCountPage(1)
+                setProducts([])
             }
         }
 
@@ -56,7 +64,9 @@ export const ListProductsWrapper = () => {
             setProgress(100)
         }
 
-        eventSourceService.connect(handler, onErrorHandler, () => { setProgress(100) });
+        eventSourceService.connect(handler, onErrorHandler, () => {
+            setProgress(100)
+        });
     }
 
     const uploadTestProductsHandler = async () => {
@@ -71,9 +81,11 @@ export const ListProductsWrapper = () => {
                 progress: number
             }
 
-            setProgress(body.progress)
+            setEvents((previousData) => [...previousData, body])
             if (body.progress === 100) {
                 useToast(body.message, { level: ToastLevel.SUCCESS })
+                setPage(1)
+                setIsLoading(true)
             }
         }
 
@@ -114,7 +126,7 @@ export const ListProductsWrapper = () => {
 
     useEffect(() => {
         fetchData()
-    }, [page, countPerPage])
+    }, [page, countPerPage, isLoading])
 
     return <>
         {progress < 100 && <ProgressBar progress={progress} />}
@@ -126,7 +138,7 @@ export const ListProductsWrapper = () => {
                 <div className="py-3 flex gap-4">
                     <Link to={"/product/add"}>
                         <AppButton>
-                            Adicionar
+                            Add Product
                         </AppButton>
                     </Link>
                     <AppButton onClick={uploadTestProductsHandler}>

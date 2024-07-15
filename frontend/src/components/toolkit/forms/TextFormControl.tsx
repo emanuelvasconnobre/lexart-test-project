@@ -18,7 +18,7 @@ export default function TextFormControl({
 }: Props) {
   return (
     <div
-      className={`mb-[15px] w-full flex flex-col justify-start text-white ${className}`}
+      className={`mb-[15px] w-full flex flex-col justify-start ${className}`}
     >
       {!!label ? <label htmlFor={props.name} className="text-sm leading-none mb-2.5 font-semibold">
         {label}

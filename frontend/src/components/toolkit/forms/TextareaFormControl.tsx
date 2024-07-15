@@ -20,7 +20,7 @@ export default function TextareaFormControl({
 }: Props) {
   return (
     <div
-      className={`mb-[15px] w-full flex flex-col justify-start text-white ${className}`}
+      className={`mb-[15px] w-full flex flex-col justify-start ${className}`}
     >
       {!!label && <span className="text-sm leading-none font-semibold mb-2.5">
         {label}

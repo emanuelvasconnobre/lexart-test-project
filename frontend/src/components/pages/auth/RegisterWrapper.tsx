@@ -42,7 +42,7 @@ export const RegisterWrapper = () => {
                     name="name"
                     control={control}
                     render={({ field }) => (
-                        <TextFormControl {...field} type="text" errorMessage={errors.name?.message} placeholder="Name" label="Name" />
+                        <TextFormControl {...field} type="text" className="text-white" errorMessage={errors.name?.message} placeholder="Name" label="Name" />
                     )}
                 />
 
@@ -50,7 +50,7 @@ export const RegisterWrapper = () => {
                     name="username"
                     control={control}
                     render={({ field }) => (
-                        <TextFormControl {...field} type="text" errorMessage={errors.username?.message} placeholder="Username" label="Username" />
+                        <TextFormControl {...field} type="text" className="text-white" errorMessage={errors.username?.message} placeholder="Username" label="Username" />
                     )}
                 />
 
@@ -58,7 +58,7 @@ export const RegisterWrapper = () => {
                     name="email"
                     control={control}
                     render={({ field }) => (
-                        <TextFormControl {...field} type="text" errorMessage={errors.email?.message} placeholder="Email" label="Email" />
+                        <TextFormControl {...field} type="text" className="text-white" errorMessage={errors.email?.message} placeholder="Email" label="Email" />
                     )}
                 />
 
@@ -66,7 +66,7 @@ export const RegisterWrapper = () => {
                     name="password"
                     control={control}
                     render={({ field }) => (
-                        <TextFormControl {...field} type="text" errorMessage={errors.password?.message} placeholder="Password" label="Password" />
+                        <TextFormControl {...field} type="password" errorMessage={errors.password?.message} placeholder="Password" label="Password" />
                     )}
                 />
 
