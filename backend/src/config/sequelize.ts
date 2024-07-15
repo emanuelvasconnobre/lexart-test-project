@@ -3,6 +3,7 @@ import { Sequelize } from "sequelize-typescript";
 import { logger } from "./winston";
 
 export const sequelize = new Sequelize({
+  ssl: process.env.DB_SSL === "true",
   database: process.env.DB_DATABASE,
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
