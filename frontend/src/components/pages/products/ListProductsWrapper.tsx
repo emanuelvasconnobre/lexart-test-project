@@ -119,19 +119,25 @@ export const ListProductsWrapper = () => {
     return <>
         {progress < 100 && <ProgressBar progress={progress} />}
         <div className="px-5 py-6">
-            <div className="py-3 flex gap-4">
-                <Link to={"/product/add"}>
-                    <AppButton>
-                        Adicionar
+            <div className="flex justify-between items-center">
+                <p className="text-xl font-bold text-secondary-light mb-3">
+                    Logging Page
+                </p>
+                <div className="py-3 flex gap-4">
+                    <Link to={"/product/add"}>
+                        <AppButton>
+                            Adicionar
+                        </AppButton>
+                    </Link>
+                    <AppButton onClick={uploadTestProductsHandler}>
+                        Add Test Product
                     </AppButton>
-                </Link>
-                <AppButton onClick={uploadTestProductsHandler}>
-                    Add Test Product
-                </AppButton>
-                <AppButton onClick={deleteAllProducts}>
-                    Delete All Products
-                </AppButton>
+                    <AppButton onClick={deleteAllProducts}>
+                        Delete All Products
+                    </AppButton>
+                </div>
             </div>
+            <hr className="my-3" />
             <DataTable<ProductModel>
                 columns={[
                     {
